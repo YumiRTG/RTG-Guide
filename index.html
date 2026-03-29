@@ -231,6 +231,7 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
     <button onclick="translatePage('de')" id="flag-de" title="Deutsch" style="background:none;border:2px solid transparent;border-radius:6px;padding:4px 10px;font-size:22px;cursor:pointer;transition:all .2s;opacity:0.5;">🇩🇪</button>
     <button onclick="translatePage('fr')" id="flag-fr" title="Français" style="background:none;border:2px solid transparent;border-radius:6px;padding:4px 10px;font-size:22px;cursor:pointer;transition:all .2s;opacity:0.5;">🇫🇷</button>
     <span id="lang-label" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px;margin-left:6px;">EN</span>
+
   </div>
 </header>
 
@@ -445,7 +446,7 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
           </td>
           <td style="color:var(--dim);font-size:12px">Claire</td>
           <td><span class="pill swap">PRIORITY 3</span></td>
-          <td style="font-size:12px">Only Healer in the Game, really good for capmpaign and decent in field.</td>
+          <td style="font-size:12px">Only Healer in the Game, really good for campaign and decent in field.</td>
         </tr>
       </tbody>
     </table>
@@ -463,6 +464,8 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
         <img src="https://i.ibb.co/ZpCY1q6B/Screenshot-20260329-085310-Resident-Evil-Survival-Unit.jpg" style="width:34px;height:38px;object-fit:cover;object-position:top;border-radius:4px;border:1px solid var(--border)" onerror="this.style.display='none'">
         <span style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;min-width:100px">REBECCA</span>
         <span class="obtain-chip">🛒 Daily Hero Pack</span>
+        <span class="obtain-chip">🔄 Special Exchange Event</span>
+        <span class="obtain-chip" style="border-color:rgba(46,204,113,.4);color:#2ecc71">✅ Now available!</span>
       </div>
       <div style="padding:9px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-wrap:wrap">
         <img src="https://i.ibb.co/pv6mZGgx/Screenshot-20260329-085336-Resident-Evil-Survival-Unit.jpg" style="width:34px;height:38px;object-fit:cover;object-position:top;border-radius:4px;border:1px solid var(--border)" onerror="this.style.display='none'">
@@ -1168,14 +1171,14 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
         <li><span class="skill-num">TYPE</span>Alliance rally boss event</li>
         <li><span class="skill-num">FREQ</span>Every 48 hours</li>
         <li><span class="skill-num">SIZE</span>Full alliance participation</li>
-        <li><span class="skill-num">STAMINA</span>Costs action points / stamina</li>
+        <li><span class="skill-num">TIMER</span>Boss despawns after 30 minutes</li>
+        <li><span class="skill-num">COST</span>No action points / stamina required</li>
       </ul>
     </div>
     <div style="background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:16px">
       <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:#fff;margin-bottom:10px">KEY REWARDS</div>
       <ul class="skill-list">
         <li><span class="skill-num">DROP</span>Weapon upgrade materials</li>
-        <li><span class="skill-num">DROP</span>Luminium materials</li>
         <li><span class="skill-num">DROP</span>Resource packages</li>
         <li><span class="skill-num">DROP</span>Alliance contribution points</li>
       </ul>
@@ -1186,7 +1189,7 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
   <h3 class="sub-header">🐊 HOW TO PARTICIPATE</h3>
   <ol class="step-list" style="background:var(--panel);padding:14px 18px;border-radius:8px">
     <li><strong>Check the event timer</strong> Go to the Events tab and find the Alligator Hunt countdown. The event spawns the boss on the map at fixed intervals.</li>
-    <li><strong>Coordinate with your alliance</strong> Use alliance chat to agree on rally timing. The boss requires multiple simultaneous rallies to kill efficiently — solo attacks waste stamina.</li>
+    <li><strong>Coordinate with your alliance</strong> Use alliance chat to agree on rally timing. The boss requires multiple simultaneous rallies to kill efficiently — attacking together deals far more damage than spreading out.</li>
     <li><strong>Set your Rally team</strong> Use your best combat heroes. Luis (AoE damage) + Billy (DEF shred) lead the highest-damage rallies. Enable the "Join Rally" stat heroes as Squad Leader for the bonus.</li>
     <li><strong>Launch rallies</strong> The alliance leader or officers start the rally. Other members join before the countdown ends. The more members join, the more damage — and the faster the kill.</li>
     <li><strong>Claim your rewards</strong> After the Alligator dies, rewards are distributed. Higher damage contributions = better personal reward tier.</li>
@@ -1197,9 +1200,8 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
   <h3 class="sub-header">💡 TIPS &amp; TRICKS</h3>
   <div class="callout green"><strong>🏆 Max your rewards:</strong> Join EVERY rally your alliance starts, even if your contribution is small. Alliance participation bonuses are shared — every member gets a cut of the total kill reward.</div>
   <div class="callout"><strong>🎯 Use Aberration-killing heroes:</strong> Some heroes have the "Aberration" combat trait. These get bonus stats when fighting B.O.W. bosses like the Alligator. Check the hero's trait tab before setting your rally team.</div>
-  <div class="callout gold"><strong>⏰ Timing is critical:</strong> The Alligator has a death timer. If your alliance doesn't kill it in time, it despawns and rewards are reduced. Coordinate kill timing and have enough active members online.</div>
-  <div class="callout fire"><strong>⚠️ Don't waste stamina attacking solo:</strong> Solo attacks deal minimal damage to the boss. Always wait for a full alliance rally. The damage scaling is much higher in group rallies and stamina is precious.</div>
-  <div class="callout blue"><strong>📅 Alligator Hunt &amp; Ace's Proof Day 4:</strong> On ACE Day 4 (Defeat Infected/Aberrations), killing the Alligator in alliance rallies gives 90,000 ACE points per rally — by far the most efficient way to score on that day.</div>
+  <div class="callout gold"><strong>⏱️ The gator always dies:</strong> The boss automatically despawns after 30 minutes regardless — it will always be killed. Focus on joining as many rallies as possible to maximise your personal reward contribution.</div>
+  <div class="callout blue"><strong>📅 Alligator Hunt &amp; Ace's Proof Day 6:</strong> On ACE Day 6 (Defeat Infected/Aberrations), killing the Alligator in alliance rallies gives 90,000 ACE points per rally — by far the most efficient way to score on that day.</div>
 </div>
 </div><!-- end alligator -->
 
@@ -1243,10 +1245,9 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
       <div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#2ecc71;letter-spacing:2px;margin-bottom:10px">✅ HIGH VALUE TASKS</div>
       <ul style="list-style:none;font-size:13px">
         <li style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)">✅ <strong style="color:#fff">Troop Training / Completion</strong></li>
-        <li style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)">✅ <strong style="color:#fff">Gathering Missions</strong> <span style="color:var(--dim);font-size:11px">(only acceptable long timer)</span></li>
+        <li style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)">✅ <strong style="color:#fff">Gathering / Resource Collection</strong> <span style="color:var(--dim);font-size:11px">(only acceptable long timer)</span></li>
         <li style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)">✅ <strong style="color:#fff">Outbreak / Zombie Hunts</strong></li>
         <li style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)">✅ <strong style="color:#fff">Rally Missions</strong> (Boss / Outbreak / Special Ops)</li>
-        <li style="padding:5px 0">✅ <strong style="color:#fff">Resource Collection</strong> <span style="color:var(--dim);font-size:11px">(short timers only)</span></li>
       </ul>
     </div>
     <div style="background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.2);border-radius:8px;padding:14px">
@@ -1307,18 +1308,20 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
 <div id="ace" class="top-page">
 <div class="page-inner">
   <div class="section-title">ACE'S PROOF EVENT</div>
-  <div class="section-sub">// 5-DAY WEEKLY SCORING EVENT — HOW TO MAX EVERY DAY //</div>
-  <div class="callout fire"><strong>What is Ace's Proof?</strong> ACE is a weekly 5-day event where every day rotates into a new scoring category. Timing your actions to the correct day is everything. Players who score blind waste speedups and lose ranking — read this first.</div>
-  <div class="callout green">ACE repeats every week and is basically a <strong>disguised 5-day war preparation program</strong>. An alliance that maxes ACE every week walks into every war event significantly stronger than one that ignores it.</div>
+  <div class="section-sub">// 7-DAY WEEKLY SCORING EVENT — HOW TO MAX EVERY DAY //</div>
+  <div class="callout fire"><strong>What is Ace's Proof?</strong> ACE is a weekly 7-day event where every day rotates into a new scoring category. Timing your actions to the correct day is everything. Players who score blind waste speedups and lose ranking — read this first.</div>
+  <div class="callout green">ACE repeats every week and is basically a <strong>disguised 7-day war preparation program</strong>. An alliance that maxes ACE every week walks into every war event significantly stronger than one that ignores it.</div>
 
   <div class="divider"></div>
   <div class="day-grid">
+
     <div class="day-card">
-      <div class="day-card-header"><div class="day-num">D1</div><div><div class="day-title">COMBAT POWER</div><div class="day-focus">Buildings + Research Only</div></div></div>
+      <div class="day-card-header"><div class="day-num">D1</div><div><div class="day-title">COMBAT POWER</div><div class="day-focus">Construction + Research + Troop Training</div></div></div>
       <div class="day-card-body">
         <ul>
           <li>+1 CP from Construction <span class="pts">45 pts</span></li>
           <li>+1 CP from Research <span class="pts">45 pts</span></li>
+          <li>+1 CP from Troop Training <span class="pts">20 pts</span></li>
           <li style="color:var(--dim);font-size:11px;margin-top:6px">🎯 Save big upgrades. Leave builds 1–5 min from finish overnight then speed-complete on Day 1.</li>
           <li style="color:var(--crimson);font-size:11px">❌ Don't: upgrade farms/resource buildings — they give almost no CP.</li>
         </ul>
@@ -1326,61 +1329,93 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
     </div>
 
     <div class="day-card">
-      <div class="day-card-header"><div class="day-num">D2</div><div><div class="day-title">FILES + GATHER</div><div class="day-focus">Hero Files + Roulette + Gathering</div></div></div>
+      <div class="day-card-header"><div class="day-num">D2</div><div><div class="day-title">EARN POINTS</div><div class="day-focus">Roulette + Hero Files + Gathering</div></div></div>
       <div class="day-card-body">
         <ul>
           <li>Spin roulette <span class="pts">90,000 pts</span></li>
-          <li>Use Legendary File <span class="pts">35,000 pts</span></li>
-          <li>Use Epic File <span class="pts">14,000 pts</span></li>
-          <li>Use Rare File <span class="pts">4,000 pts</span></li>
-          <li>Gather 200 resources <span class="pts">15 pts each</span></li>
-          <li style="color:var(--dim);font-size:11px;margin-top:6px">🎯 Save ALL hero files for this day. Start marches gathering as Day 2 begins.</li>
-          <li style="color:var(--crimson);font-size:11px">❌ Don't: use files on any other day.</li>
+          <li>Use hero files <span class="pts">see Day 7</span></li>
+          <li>Gather 200 food or lumber <span class="pts">15 pts</span></li>
+          <li>Gather 40 iron <span class="pts">15 pts</span></li>
+          <li>Gather 10 oil <span class="pts">15 pts</span></li>
+          <li style="color:var(--dim);font-size:11px;margin-top:6px">🎯 Start gathering marches as Day 2 begins. Spin roulette if available.</li>
+          <li style="color:var(--crimson);font-size:11px">❌ Don't: use hero files here — save them for Day 7.</li>
         </ul>
       </div>
     </div>
 
     <div class="day-card">
-      <div class="day-card-header"><div class="day-num">D3</div><div><div class="day-title">TROOP TRAINING</div><div class="day-focus">Higher Tiers = More Points</div></div></div>
+      <div class="day-card-header"><div class="day-num">D3</div><div><div class="day-title">TROOP TRAINING</div><div class="day-focus">Tier 6+ = Best Points</div></div></div>
       <div class="day-card-body">
         <ul>
           <li>Tier 9 trained <span class="pts">1,485 pts/troop</span></li>
           <li>Tier 8 trained <span class="pts">1,130 pts/troop</span></li>
           <li>Tier 7 trained <span class="pts">830 pts/troop</span></li>
           <li>Tier 6 trained <span class="pts">595 pts/troop</span></li>
-          <li>Tier 5 trained <span class="pts">385 pts/troop</span></li>
-          <li>Tier 4 trained <span class="pts">265 pts/troop</span></li>
-          <li>Tier 1 trained <span class="pts">90 pts/troop</span></li>
-          <li style="color:var(--dim);font-size:11px;margin-top:6px">🎯 Queue all barracks, then speed-complete on Day 3. Always train your highest unlocked tier.</li>
-          <li style="color:var(--crimson);font-size:11px">❌ Don't: train troops on Day 1 or 2.</li>
+          <li style="color:var(--dim);font-size:11px">Note: upgrading troops also gives points</li>
+          <li style="color:var(--dim);font-size:11px;margin-top:6px">🎯 Queue all barracks, speed-complete on Day 3. Always train your highest unlocked tier.</li>
+          <li style="color:var(--crimson);font-size:11px">❌ Don't: train low-tier troops — points per troop drop significantly below T6.</li>
         </ul>
       </div>
     </div>
 
     <div class="day-card">
-      <div class="day-card-header"><div class="day-num">D4</div><div><div class="day-title">DEFEAT INFECTED</div><div class="day-focus">B.O.W. Kills = Max Points</div></div></div>
+      <div class="day-card-header"><div class="day-num">D4</div><div><div class="day-title">RESOURCE GATHERING</div><div class="day-focus">Gather + Research + Jewel Rating</div></div></div>
       <div class="day-card-body">
         <ul>
-          <li>Defeat B.O.W. (rally) <span class="pts">90,000 pts</span></li>
-          <li>Defeat normal infected <span class="pts">30,000 pts</span></li>
-          <li style="color:var(--dim);font-size:11px;margin-top:6px">🎯 Save all stamina for this day. Rally Alligator Hunt with your alliance for massive points. Every kill gives the same ACE points regardless of level — hit the fastest targets.</li>
-          <li style="color:var(--crimson);font-size:11px">❌ Don't: burn stamina on Days 1–3.</li>
+          <li>Increase jewel rating by 1 <span class="pts">1,000 pts</span></li>
+          <li>+1 CP from Research <span class="pts">45 pts</span></li>
+          <li>Gather 200 food or lumber <span class="pts">15 pts</span></li>
+          <li>Gather 40 iron <span class="pts">15 pts</span></li>
+          <li>Gather 10 oil <span class="pts">15 pts</span></li>
+          <li style="color:var(--dim);font-size:11px;margin-top:6px">🎯 Keep marches out gathering all day. Upgrade jewels if possible for bonus points.</li>
         </ul>
       </div>
     </div>
 
     <div class="day-card">
-      <div class="day-card-header"><div class="day-num">D5</div><div><div class="day-title">FULL POWER DAY</div><div class="day-focus">All Categories Combined</div></div></div>
+      <div class="day-card-header"><div class="day-num">D5</div><div><div class="day-title">COMBAT POWER</div><div class="day-focus">Gear + Weapons + Construction + Research + Training</div></div></div>
       <div class="day-card-body">
         <ul>
-          <li>CP from Construction <span class="pts">30 pts</span></li>
-          <li>CP from Research <span class="pts">30 pts</span></li>
-          <li>CP from Troop Training <span class="pts">20 pts</span></li>
-          <li style="color:var(--dim);font-size:11px;margin-top:6px">🎯 Dump remaining speedups, construction, and troop training here. If you saved properly, Day 5 is your biggest scoring day.</li>
-          <li style="color:var(--crimson);font-size:11px">❌ Don't: blow all speedups Days 1–4 with nothing left.</li>
+          <li>Use hero exclusive weapon fragment <span class="pts">100,000 pts</span></li>
+          <li>Use 1 gear enhancement item <span class="pts">50,000 pts</span></li>
+          <li>+1 CP from Construction <span class="pts">45 pts</span></li>
+          <li>+1 CP from Research <span class="pts">45 pts</span></li>
+          <li>+1 CP from Troop Training <span class="pts">20 pts</span></li>
+          <li style="color:var(--dim);font-size:11px;margin-top:6px">🎯 This is your biggest scoring day if you saved weapon fragments and gear items. Dump remaining speedups here too.</li>
+          <li style="color:var(--crimson);font-size:11px">❌ Don't: blow weapon fragments on other days.</li>
         </ul>
       </div>
     </div>
+
+    <div class="day-card">
+      <div class="day-card-header"><div class="day-num">D6</div><div><div class="day-title">DEFEAT INFECTED</div><div class="day-focus">B.O.W. Rallies = Max Points</div></div></div>
+      <div class="day-card-body">
+        <ul>
+          <li>Defeat B.O.W. (rally leader) <span class="pts">90,000 pts</span></li>
+          <li>Defeat infected <span class="pts">30,000 pts</span></li>
+          <li>Increase operative treasure rating by 1 <span class="pts">500 pts</span></li>
+          <li style="color:var(--dim);font-size:11px;margin-top:6px">🎯 Alligator Hunt costs no stamina — join every rally on this day. 90,000 pts per kill as rally leader.</li>
+          <li style="color:var(--dim);font-size:11px">🎯 Defeat as many infected on the map as possible for the 30,000 pts bonus.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-card-header"><div class="day-num">D7</div><div><div class="day-title">HERO DEVELOPMENT</div><div class="day-focus">Hero Files + Speed Ups</div></div></div>
+      <div class="day-card-body">
+        <ul>
+          <li>Use 1 legendary hero file <span class="pts">35,000 pts</span></li>
+          <li>Use 1 epic hero file <span class="pts">14,000 pts</span></li>
+          <li>Use 1 rare hero file <span class="pts">4,000 pts</span></li>
+          <li>Use 1 min speed up (construction) <span class="pts">300 pts</span></li>
+          <li>Use 1 min speed up (research) <span class="pts">300 pts</span></li>
+          <li>Use 1 min speed up (troop training) <span class="pts">300 pts</span></li>
+          <li style="color:var(--dim);font-size:11px;margin-top:6px">🎯 Save ALL hero files for this day. Stack legendary files for maximum points.</li>
+          <li style="color:var(--crimson);font-size:11px">❌ Don't: use hero files on any other day.</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 
   <div class="divider"></div>
@@ -1685,13 +1720,20 @@ function translatePage(lang) {
   var lbl = document.getElementById('lang-label');
   if (lbl) lbl.textContent = lang.toUpperCase();
 
-  // Set the googtrans cookie (this is what Google Translate reads)
-  var cookieVal = lang === 'en' ? '/en/en' : '/en/' + lang;
-  document.cookie = 'googtrans=' + cookieVal + '; path=/';
-  document.cookie = 'googtrans=' + cookieVal + '; path=/; domain=.' + location.hostname;
+  // Get the base original URL (strip translate proxy if already translated)
+  var originalUrl = location.href;
+  if (originalUrl.indexOf('translate.goog') !== -1) {
+    var m = originalUrl.match(/https?:\/\/([^.]+?)--([^.]+?)\.translate\.goog([^?]*)/);
+    if (m) originalUrl = 'https://' + m[1] + '.' + m[2] + m[3];
+  }
 
-  // Reload so Google picks up the cookie
-  location.reload();
+  if (lang === 'en') {
+    location.href = originalUrl;
+    return;
+  }
+
+  // Google Translate URL proxy — works on ALL devices including mobile
+  location.href = 'https://translate.google.com/translate?sl=en&tl=' + lang + '&u=' + encodeURIComponent(originalUrl);
 }
 </script>
 
