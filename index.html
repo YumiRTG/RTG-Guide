@@ -1517,6 +1517,68 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
 </div>
 </div><!-- end rally -->
 
+
+<!-- ═══════ COMMUNITY CHATBOX ═══════ -->
+<div style="max-width:1100px;margin:40px auto 0;padding:0 20px;">
+  <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--panel);">
+
+    <!-- Chat Header -->
+    <div style="background:linear-gradient(90deg,#1a0000,var(--panel2));padding:14px 20px;border-bottom:1px solid var(--blood);display:flex;align-items:center;gap:12px;">
+      <span style="font-size:20px;">💬</span>
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:#fff;">COMMUNITY CHAT</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px;">RACCOON TASK GROUP · LIVE</div>
+      </div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:6px;">
+        <div id="chat-online-dot" style="width:8px;height:8px;background:#2ecc71;border-radius:50%;animation:pulse 2s infinite;"></div>
+        <span id="chat-online-count" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#2ecc71;letter-spacing:1px;">ONLINE</span>
+      </div>
+    </div>
+
+    <!-- Name input bar -->
+    <div id="chat-name-bar" style="padding:12px 16px;background:rgba(139,0,0,0.08);border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;">
+      <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px;white-space:nowrap;">YOUR NAME:</span>
+      <input id="chat-name-input" type="text" maxlength="20" placeholder="Enter callsign..." style="background:var(--dark);border:1px solid var(--border);border-radius:4px;color:#fff;font-family:'Share Tech Mono',monospace;font-size:12px;padding:5px 10px;flex:1;outline:none;max-width:200px;" />
+      <button onclick="saveName()" style="background:var(--blood);border:none;border-radius:4px;color:#fff;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px;padding:6px 14px;cursor:pointer;">SET</button>
+      <span id="chat-name-display" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gold);display:none;"></span>
+      <button id="chat-name-change" onclick="changeName()" style="display:none;background:none;border:1px solid var(--border);border-radius:4px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:10px;padding:4px 8px;cursor:pointer;">CHANGE</button>
+    </div>
+
+    <!-- Messages -->
+    <div id="chat-messages" style="height:320px;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth;">
+      <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px;padding:20px 0;" id="chat-loading">
+        ☣ CONNECTING TO RACCOON CITY...
+      </div>
+    </div>
+
+    <!-- Input bar -->
+    <div style="padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;">
+      <input id="chat-input" type="text" maxlength="300" placeholder="Type a message... (Enter to send)" 
+        style="flex:1;background:var(--dark);border:1px solid var(--border);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:14px;padding:8px 12px;outline:none;transition:border-color .2s;"
+        onfocus="this.style.borderColor='var(--crimson)'" 
+        onblur="this.style.borderColor='var(--border)'"
+        onkeydown="if(event.key==='Enter')sendMessage()" />
+      <button onclick="sendMessage()" style="background:var(--blood);border:none;border-radius:6px;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;padding:8px 20px;cursor:pointer;transition:background .2s;white-space:nowrap;" onmouseover="this.style.background='var(--crimson)'" onmouseout="this.style.background='var(--blood)'">SEND ☣</button>
+    </div>
+
+  </div>
+</div>
+
+<style>
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.chat-msg { display:flex; flex-direction:column; gap:2px; animation:fadeIn .2s ease; }
+.chat-msg-header { display:flex; align-items:baseline; gap:8px; }
+.chat-msg-name { font-family:'Share Tech Mono',monospace; font-size:11px; font-weight:700; }
+.chat-msg-time { font-family:'Share Tech Mono',monospace; font-size:9px; color:var(--dim); }
+.chat-msg-text { font-size:14px; color:var(--text); line-height:1.4; word-break:break-word; padding-left:2px; }
+.chat-msg.own .chat-msg-name { color:var(--gold); }
+.chat-msg.other .chat-msg-name { color:var(--crimson); }
+.chat-msg.system .chat-msg-text { color:var(--dim); font-family:'Share Tech Mono',monospace; font-size:10px; text-align:center; font-style:italic; }
+#chat-messages::-webkit-scrollbar { width:4px; }
+#chat-messages::-webkit-scrollbar-track { background:transparent; }
+#chat-messages::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+</style>
+
 <footer>
   ☣ RESIDENT EVIL: SURVIVAL UNIT — COMMUNITY FULL GUIDE · S1 / S2 / S3 ☣<br>
   <span style="margin-top:6px;display:block">Not affiliated with Capcom, Aniplex or JOYCITY. </span>
@@ -1639,5 +1701,158 @@ function translatePage(lang) {
 .goog-te-gadget { display: none !important; }
 body { top: 0px !important; }
 </style>
+
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getDatabase, ref, push, onValue, serverTimestamp, query, limitToLast } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+
+// ── PASTE YOUR FIREBASE CONFIG HERE ──────────────────────────────
+const firebaseConfig = {
+  apiKey: "AIzaSyAbCp0lggHxEx_FwOecyUuMjkV23dFe4qs",
+  authDomain: "rtg-guide.firebaseapp.com",
+  databaseURL: "https://rtg-guide-default-rtdb.firebaseio.com",
+  projectId: "rtg-guide",
+  storageBucket: "rtg-guide.firebasestorage.app",
+  messagingSenderId: "965736032789",
+  appId: "1:965736032789:web:78f247f706076e6eec3c1c"
+};
+// ─────────────────────────────────────────────────────────────────
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const chatRef = query(ref(db, 'rtg-chat/messages'), limitToLast(80));
+
+// Name logic
+var myName = localStorage.getItem('rtg-chat-name') || '';
+var myColor = localStorage.getItem('rtg-chat-color') || randomColor();
+
+function randomColor() {
+  var colors = ['#e74c3c','#e67e22','#f1c40f','#2ecc71','#1abc9c','#3498db','#9b59b6','#e91e63','#ff5722','#00bcd4'];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+window.saveName = function() {
+  var inp = document.getElementById('chat-name-input');
+  var name = inp.value.trim().replace(/[<>]/g, '');
+  if (!name) return;
+  myName = name;
+  localStorage.setItem('rtg-chat-name', name);
+  if (!localStorage.getItem('rtg-chat-color')) {
+    localStorage.setItem('rtg-chat-color', myColor);
+  }
+  showNameSet();
+};
+
+window.changeName = function() {
+  document.getElementById('chat-name-display').style.display = 'none';
+  document.getElementById('chat-name-change').style.display = 'none';
+  var bar = document.getElementById('chat-name-bar');
+  bar.querySelector('input').style.display = '';
+  bar.querySelector('button').style.display = '';
+};
+
+function showNameSet() {
+  var disp = document.getElementById('chat-name-display');
+  disp.textContent = '✔ ' + myName;
+  disp.style.display = 'inline';
+  document.getElementById('chat-name-change').style.display = 'inline';
+  document.getElementById('chat-name-input').style.display = 'none';
+  document.getElementById('chat-name-bar').querySelector('button:not(#chat-name-change)').style.display = 'none';
+}
+
+if (myName) {
+  document.getElementById('chat-name-input').value = myName;
+  showNameSet();
+}
+
+// Send message
+window.sendMessage = function() {
+  if (!myName) {
+    document.getElementById('chat-name-input').focus();
+    document.getElementById('chat-name-input').style.borderColor = 'var(--crimson)';
+    setTimeout(function(){ document.getElementById('chat-name-input').style.borderColor = 'var(--border)'; }, 1000);
+    return;
+  }
+  var inp = document.getElementById('chat-input');
+  var text = inp.value.trim().replace(/[<>]/g, '');
+  if (!text) return;
+  inp.value = '';
+
+  push(ref(db, 'rtg-chat/messages'), {
+    name: myName,
+    color: myColor,
+    text: text,
+    ts: serverTimestamp()
+  });
+};
+
+// Listen for messages
+var firstLoad = true;
+var seenIds = {};
+
+onValue(chatRef, function(snapshot) {
+  var msgs = [];
+  snapshot.forEach(function(child) {
+    msgs.push({ id: child.key, ...child.val() });
+  });
+
+  if (firstLoad) {
+    firstLoad = false;
+    document.getElementById('chat-loading').style.display = 'none';
+    msgs.forEach(function(m) {
+      seenIds[m.id] = true;
+      appendMessage(m);
+    });
+    scrollChat();
+    return;
+  }
+
+  msgs.forEach(function(m) {
+    if (!seenIds[m.id]) {
+      seenIds[m.id] = true;
+      appendMessage(m);
+      scrollChat();
+    }
+  });
+});
+
+function appendMessage(m) {
+  var box = document.getElementById('chat-messages');
+  var isOwn = m.name === myName;
+  var isSystem = m.name === 'SYSTEM';
+
+  if (isSystem) {
+    var div = document.createElement('div');
+    div.className = 'chat-msg system';
+    div.innerHTML = '<div class="chat-msg-text">— ' + escHtml(m.text) + ' —</div>';
+    box.appendChild(div);
+    return;
+  }
+
+  var time = m.ts ? new Date(m.ts).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : '';
+  var color = m.color || 'var(--crimson)';
+
+  var div = document.createElement('div');
+  div.className = 'chat-msg ' + (isOwn ? 'own' : 'other');
+  div.innerHTML =
+    '<div class="chat-msg-header">' +
+      '<span class="chat-msg-name" style="color:' + color + '">' + escHtml(m.name) + '</span>' +
+      '<span class="chat-msg-time">' + time + '</span>' +
+    '</div>' +
+    '<div class="chat-msg-text">' + escHtml(m.text) + '</div>';
+  box.appendChild(div);
+}
+
+function scrollChat() {
+  var box = document.getElementById('chat-messages');
+  box.scrollTop = box.scrollHeight;
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+
 </body>
 </html>
