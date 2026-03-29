@@ -229,6 +229,7 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
     <button onclick="translatePage('en')" id="flag-en" title="English" style="background:none;border:2px solid rgba(255,255,255,0.4);border-radius:6px;padding:4px 10px;font-size:22px;cursor:pointer;transition:all .2s;">🇬🇧</button>
     <button onclick="translatePage('es')" id="flag-es" title="Español" style="background:none;border:2px solid transparent;border-radius:6px;padding:4px 10px;font-size:22px;cursor:pointer;transition:all .2s;opacity:0.5;">🇪🇸</button>
     <button onclick="translatePage('de')" id="flag-de" title="Deutsch" style="background:none;border:2px solid transparent;border-radius:6px;padding:4px 10px;font-size:22px;cursor:pointer;transition:all .2s;opacity:0.5;">🇩🇪</button>
+    <button onclick="translatePage('fr')" id="flag-fr" title="Français" style="background:none;border:2px solid transparent;border-radius:6px;padding:4px 10px;font-size:22px;cursor:pointer;transition:all .2s;opacity:0.5;">🇫🇷</button>
     <span id="lang-label" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px;margin-left:6px;">EN</span>
   </div>
 </header>
@@ -1605,7 +1606,7 @@ function togglePanel(header) {
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
     pageLanguage: 'en',
-    includedLanguages: 'es,de',
+    includedLanguages: 'es,de,fr',
     autoDisplay: false,
     multilanguagePage: false
   }, 'google_translate_element');
@@ -1613,7 +1614,7 @@ function googleTranslateElementInit() {
 
 function translatePage(lang) {
   // Update flag UI
-  ['en','es','de'].forEach(function(l) {
+  ['en','es','de','fr'].forEach(function(l) {
     var b = document.getElementById('flag-' + l);
     if (!b) return;
     b.style.border = l === lang ? '2px solid rgba(255,255,255,0.6)' : '2px solid transparent';
