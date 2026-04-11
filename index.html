@@ -237,7 +237,8 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
 
 <!-- ═══════ TOP-LEVEL TAB BAR ═══════ -->
 <nav class="top-tabs">
-  <button class="top-tab-btn active" onclick="showTop('heroes',this)">🧬 HEROES</button>
+  <button class="top-tab-btn active" onclick="showTop('vaccine',this)">🧪 VACCINE LAB RAID</button>
+  <button class="top-tab-btn" onclick="showTop('heroes',this)">🧬 HEROES</button>
   <button class="top-tab-btn" onclick="showTop('arena',this)">⚔ TACTICAL ARENA</button>
   <button class="top-tab-btn" onclick="showTop('luminium',this)">🔩 LUMINIUM</button>
   <button class="top-tab-btn" onclick="showTop('wesker',this)">☠ WESKER</button>
@@ -250,7 +251,7 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
 <!-- ═══════════════════════════════════ -->
 <!-- ████ TOP PAGE: HEROES ████          -->
 <!-- ═══════════════════════════════════ -->
-<div id="heroes" class="top-page active">
+<div id="heroes" class="top-page">
   <div class="section-tabs">
     <button class="sec-tab-btn active" onclick="showSec('heroes','tierlist',this)">☰ TIER LIST</button>
     <button class="sec-tab-btn" onclick="showSec('heroes','priority',this)">🎯 PRIORITY LIST</button>
@@ -1553,52 +1554,6 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
 </div><!-- end rally -->
 
 
-<!-- ═══════ COMMUNITY CHATBOX ═══════ -->
-<div style="max-width:1100px;margin:40px auto 0;padding:0 20px;">
-  <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--panel);">
-
-    <!-- Chat Header -->
-    <div style="background:linear-gradient(90deg,#1a0000,var(--panel2));padding:14px 20px;border-bottom:1px solid var(--blood);display:flex;align-items:center;gap:12px;">
-      <span style="font-size:20px;">💬</span>
-      <div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:#fff;">COMMUNITY CHAT</div>
-        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px;">RACCOON TASK GROUP · LIVE</div>
-      </div>
-      <div style="margin-left:auto;display:flex;align-items:center;gap:6px;">
-        <div id="chat-online-dot" style="width:8px;height:8px;background:#2ecc71;border-radius:50%;animation:pulse 2s infinite;"></div>
-        <span id="chat-online-count" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#2ecc71;letter-spacing:1px;">ONLINE</span>
-      </div>
-    </div>
-
-    <!-- Name input bar -->
-    <div id="chat-name-bar" style="padding:12px 16px;background:rgba(139,0,0,0.08);border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;">
-      <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px;white-space:nowrap;">YOUR NAME:</span>
-      <input id="chat-name-input" type="text" maxlength="20" placeholder="Enter callsign..." style="background:var(--dark);border:1px solid var(--border);border-radius:4px;color:#fff;font-family:'Share Tech Mono',monospace;font-size:12px;padding:5px 10px;flex:1;outline:none;max-width:200px;" />
-      <button onclick="saveName()" style="background:var(--blood);border:none;border-radius:4px;color:#fff;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px;padding:6px 14px;cursor:pointer;">SET</button>
-      <span id="chat-name-display" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gold);display:none;"></span>
-      <button id="chat-name-change" onclick="changeName()" style="display:none;background:none;border:1px solid var(--border);border-radius:4px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:10px;padding:4px 8px;cursor:pointer;">CHANGE</button>
-    </div>
-
-    <!-- Messages -->
-    <div id="chat-messages" style="height:320px;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth;">
-      <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px;padding:20px 0;" id="chat-loading">
-        ☣ CONNECTING TO RACCOON CITY...
-      </div>
-    </div>
-
-    <!-- Input bar -->
-    <div style="padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;">
-      <input id="chat-input" type="text" maxlength="300" placeholder="Type a message... (Enter to send)" 
-        style="flex:1;background:var(--dark);border:1px solid var(--border);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:14px;padding:8px 12px;outline:none;transition:border-color .2s;"
-        onfocus="this.style.borderColor='var(--crimson)'" 
-        onblur="this.style.borderColor='var(--border)'"
-        onkeydown="if(event.key==='Enter')sendMessage()" />
-      <button onclick="sendMessage()" style="background:var(--blood);border:none;border-radius:6px;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;padding:8px 20px;cursor:pointer;transition:background .2s;white-space:nowrap;" onmouseover="this.style.background='var(--crimson)'" onmouseout="this.style.background='var(--blood)'">SEND ☣</button>
-    </div>
-
-  </div>
-</div>
-
 <style>
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 .chat-msg { display:flex; flex-direction:column; gap:2px; animation:fadeIn .2s ease; }
@@ -1613,6 +1568,820 @@ footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border);ma
 #chat-messages::-webkit-scrollbar-track { background:transparent; }
 #chat-messages::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
 </style>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ████ TOP PAGE: VACCINE LAB RAID ████                          -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="vaccine" class="top-page active">
+
+  <div class="section-tabs">
+    <button class="sec-tab-btn active" onclick="showSec('vaccine','overview',this)">🗺 MAP OVERVIEW</button>
+    <button class="sec-tab-btn" onclick="showSec('vaccine','warplan',this)">⚔ WAR PLAN</button>
+    <button class="sec-tab-btn" onclick="showSec('vaccine','teams',this)">👥 TEAM ASSIGNMENTS</button>
+    <button class="sec-tab-btn" onclick="showSec('vaccine','tactics',this)">🎯 TACTICS &amp; RULES</button>
+    <button class="sec-tab-btn" onclick="showSec('vaccine','buildings',this)">🏛 BUILDINGS</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SEC: MAP OVERVIEW                                       -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div id="vaccine-overview" class="sec-page active">
+  <div class="page-inner">
+    <div class="section-title">VACCINE LAB RAID — MAP OVERVIEW</div>
+    <div class="section-sub">// BATTLEFIELD LAYOUT & KEY OBJECTIVES //</div>
+
+    <!-- Map diagram SVG -->
+    <div style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:22px;">
+      <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:0 auto;">
+        <!-- Background -->
+        <rect width="700" height="420" fill="#0d0d0d" rx="8"/>
+        <!-- Diamond battlefield outline -->
+        <polygon points="350,30 650,210 350,390 50,210" fill="none" stroke="#2a2a2a" stroke-width="2" stroke-dasharray="6,4"/>
+        <!-- Lanes lines -->
+        <line x1="350" y1="30" x2="350" y2="390" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="50" y1="210" x2="650" y2="210" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="4,4"/>
+
+        <!-- CENTRAL LABORATORY (center) -->
+        <rect x="310" y="175" width="80" height="70" rx="6" fill="#1a0a0a" stroke="#8b0000" stroke-width="2"/>
+        <text x="350" y="204" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#c0392b" letter-spacing="1">CENTRAL</text>
+        <text x="350" y="218" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="#c0392b" letter-spacing="1">LAB</text>
+        <text x="350" y="234" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="8" fill="#666">★ HIGHEST VP</text>
+
+        <!-- PROTO-VACCINE LABS (top-left & bottom-right) -->
+        <!-- Top-Left Proto-Vaccine Lab (Tweak) -->
+        <rect x="155" y="115" width="90" height="58" rx="5" fill="#0a100a" stroke="#f39c12" stroke-width="2"/>
+        <text x="200" y="137" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#f5d08a" letter-spacing="1">PROTO-VAX LAB</text>
+        <text x="200" y="149" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#f5d08a">TOP-LEFT</text>
+        <text x="200" y="160" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#888">6k/+1.2k/min</text>
+        <text x="200" y="170" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#f39c12">▶ TWEAK HOLDS</text>
+
+        <!-- Bottom-Right Proto-Vaccine Lab (Yumi) -->
+        <rect x="455" y="247" width="90" height="58" rx="5" fill="#0a100a" stroke="#9b59b6" stroke-width="2"/>
+        <text x="500" y="269" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#c39bd3" letter-spacing="1">PROTO-VAX LAB</text>
+        <text x="500" y="281" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#c39bd3">BOT-RIGHT</text>
+        <text x="500" y="292" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#888">6k/+1.2k/min</text>
+        <text x="500" y="302" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#9b59b6">▶ YUMI HOLDS</text>
+
+        <!-- PROTO-VACCINE PRODUCTION FACILITIES (N, S, E-far, W-far) -->
+        <!-- North -->
+        <rect x="310" y="60" width="80" height="46" rx="5" fill="#0a0d14" stroke="#3498db" stroke-width="1.5"/>
+        <text x="350" y="81" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#5dade2">PRODUCTION</text>
+        <text x="350" y="93" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#5dade2">NORTH</text>
+        <text x="350" y="102" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#555">2k/+400/min</text>
+
+        <!-- South -->
+        <rect x="310" y="314" width="80" height="46" rx="5" fill="#0a0d14" stroke="#3498db" stroke-width="1.5"/>
+        <text x="350" y="335" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#5dade2">PRODUCTION</text>
+        <text x="350" y="347" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#5dade2">SOUTH</text>
+        <text x="350" y="356" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#555">2k/+400/min</text>
+
+        <!-- West Production (far left) -->
+        <rect x="68" y="186" width="72" height="46" rx="5" fill="#0a0d14" stroke="#3498db" stroke-width="1.5"/>
+        <text x="104" y="206" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#5dade2">PRODUCTION</text>
+        <text x="104" y="218" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#5dade2">WEST</text>
+        <text x="104" y="228" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#555">2k/+400/min</text>
+
+        <!-- East Production (far right) -->
+        <rect x="560" y="186" width="72" height="46" rx="5" fill="#0a0d14" stroke="#3498db" stroke-width="1.5"/>
+        <text x="596" y="206" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#5dade2">PRODUCTION</text>
+        <text x="596" y="218" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#5dade2">EAST</text>
+        <text x="596" y="228" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="7" fill="#555">2k/+400/min</text>
+
+        <!-- SPAWN ZONES labels -->
+        <rect x="30" y="195" width="30" height="30" rx="4" fill="#1a3a1a" stroke="#2ecc71" stroke-width="1.5"/>
+        <text x="45" y="214" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#2ecc71">OUR</text>
+        <rect x="640" y="195" width="30" height="30" rx="4" fill="#3a1a1a" stroke="#c0392b" stroke-width="1.5"/>
+        <text x="655" y="214" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="9" fill="#c0392b">ENE</text>
+
+        <!-- Proto-Vaccine Storages note -->
+        <circle cx="270" cy="290" r="7" fill="none" stroke="#f39c12" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <circle cx="430" cy="130" r="7" fill="none" stroke="#f39c12" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <text x="350" y="408" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="8" fill="#888">⚡ DASHED CIRCLES = RANDOM STORAGE SPAWN ZONES (x2 per battle)</text>
+
+        <!-- Legend -->
+        <rect x="15" y="15" width="12" height="8" rx="2" fill="none" stroke="#8b0000" stroke-width="1.5"/>
+        <text x="32" y="23" font-family="'Share Tech Mono',monospace" font-size="8" fill="#888">Central Lab (El Team)</text>
+        <rect x="15" y="28" width="12" height="8" rx="2" fill="none" stroke="#f39c12" stroke-width="1.5"/>
+        <text x="32" y="36" font-family="'Share Tech Mono',monospace" font-size="8" fill="#888">Proto-Vax Lab Top (Tweak)</text>
+        <rect x="15" y="41" width="12" height="8" rx="2" fill="none" stroke="#9b59b6" stroke-width="1.5"/>
+        <text x="32" y="49" font-family="'Share Tech Mono',monospace" font-size="8" fill="#888">Proto-Vax Lab Bot (Yumi)</text>
+        <rect x="15" y="54" width="12" height="8" rx="2" fill="none" stroke="#3498db" stroke-width="1.5"/>
+        <text x="32" y="62" font-family="'Share Tech Mono',monospace" font-size="8" fill="#888">Production Facility</text>
+      </svg>
+    </div>
+
+    <!-- Building Info Cards -->
+    <h3 class="sub-header">🏛 KEY OBJECTIVES</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:20px;">
+
+      <!-- Central Lab -->
+      <div style="background:var(--panel2);border:1px solid #8b0000;border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(139,0,0,.2);padding:10px 14px;border-bottom:1px solid #8b0000;display:flex;align-items:center;gap:10px;">
+          <span style="font-size:28px;">🏛</span>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#fff;">CENTRAL LABORATORY</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--crimson);letter-spacing:1px;">HIGHEST VALUE TARGET</div>
+          </div>
+        </div>
+        <div style="padding:12px 14px;font-size:13px;">
+          Located at the very center of the map. Provides the most Vaccine Points of any single building.<br><br>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
+            <span style="background:rgba(139,0,0,.2);border:1px solid var(--blood);border-radius:4px;padding:3px 8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--crimson);">FIRST CAPTURE</span>
+            <span style="background:rgba(139,0,0,.2);border:1px solid var(--blood);border-radius:4px;padding:3px 8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--crimson);">HOLD ENTIRE GAME</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proto-Vaccine Labs -->
+      <div style="background:var(--panel2);border:1px solid #f39c12;border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(243,156,18,.15);padding:10px 14px;border-bottom:1px solid #f39c12;display:flex;align-items:center;gap:10px;">
+          <span style="font-size:28px;">🏗</span>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#fff;">PROTO-VACCINE LAB</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#f5d08a;letter-spacing:1px;">2nd HIGHEST VP · TOP-LEFT &amp; BOTTOM-RIGHT</div>
+          </div>
+        </div>
+        <div style="padding:12px 14px;font-size:13px;">
+          Two labs positioned at the top-left and bottom-right of the map. 2nd highest Vaccine Points — strategically vital. <strong style="color:#fff;">Tweak holds top-left, Yumi holds bottom-right.</strong>
+          <div style="margin-top:8px;background:rgba(243,156,18,.08);border-radius:6px;padding:8px 10px;font-family:'Share Tech Mono',monospace;font-size:11px;">
+            <div>Alliance VP: <span style="color:#f5d08a;">6,000 capture / +1,200/min</span></div>
+            <div>Personal VP: <span style="color:#f5d08a;">3,000 capture / +600/min</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Production Facilities -->
+      <div style="background:var(--panel2);border:1px solid #3498db;border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(52,152,219,.12);padding:10px 14px;border-bottom:1px solid #3498db;display:flex;align-items:center;gap:10px;">
+          <span style="font-size:28px;">🏭</span>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#fff;">PRODUCTION FACILITY</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#5dade2;letter-spacing:1px;">4 TOTAL · N / S / E / W</div>
+          </div>
+        </div>
+        <div style="padding:12px 14px;font-size:13px;">
+          Four production factories at each compass point. Lower VP than warehouses but still contestable. Rotate here if main objectives are lost.
+          <div style="margin-top:8px;background:rgba(52,152,219,.08);border-radius:6px;padding:8px 10px;font-family:'Share Tech Mono',monospace;font-size:11px;">
+            <div>Alliance VP: <span style="color:#5dade2;">2,000 capture / +400/min</span></div>
+            <div>Personal VP: <span style="color:#5dade2;">1,000 capture / +200/min</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Random Storages -->
+      <div style="background:var(--panel2);border:1px solid var(--gold);border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(243,156,18,.1);padding:10px 14px;border-bottom:1px solid var(--gold);display:flex;align-items:center;gap:10px;">
+          <span style="font-size:28px;">📦</span>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#fff;">PROTO-VACCINE STORAGE</div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:1px;">SPAWNS TWICE · RANDOM LOCATION</div>
+          </div>
+        </div>
+        <div style="padding:12px 14px;font-size:13px;">
+          Random storages spawn <strong style="color:var(--gold);">twice</strong> per battle. Send squads immediately to collect — these can swing the outcome significantly!
+          <div class="callout gold" style="margin-top:8px;font-size:12px;">⚡ Always send 5 marches to collect. Half marches are enough — this lets you farm faster!</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout fire">🎯 <strong>PRIORITY ORDER:</strong> Central Lab &gt; Proto-Vaccine Warehouses &gt; Random Storages &gt; Production Facilities &gt; Buff Buildings</div>
+    <div class="callout gold">💡 <strong>WIN CONDITION:</strong> Hold the Central Lab + both Warehouses the entire game while collecting all ground drops and storages.</div>
+  </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SEC: WAR PLAN                                          -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div id="vaccine-warplan" class="sec-page">
+  <div class="page-inner">
+    <div class="section-title">WAR PLAN — STICK TO THE PLAN TO WIN</div>
+    <div class="section-sub">// PHASE-BY-PHASE EXECUTION GUIDE //</div>
+
+    <div class="callout fire">🚨 <strong>GOLDEN RULE:</strong> Stick to assigned buildings. Do NOT freestyle. Follow leader calls. Maximize point collection.</div>
+
+    <div class="divider"></div>
+
+    <!-- Phase 1: Opening -->
+    <h3 class="sub-header">⚡ PHASE 1 — OPENING RUSH (0–2 min)</h3>
+    <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:18px;">
+      <div style="padding:10px 16px;background:var(--panel2);border-bottom:1px solid var(--border);font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--dim);">TEAM MOVEMENTS AT BATTLE START</div>
+      <div style="padding:14px 16px;">
+
+        <!-- Top Push -->
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);">
+          <div style="min-width:42px;height:42px;background:rgba(255,69,0,.15);border:2px solid #ff4500;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;color:#ff4500;flex-shrink:0;">TOP</div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;letter-spacing:1px;">EL TEAM (7) → TOP PROTO-VACCINE LAB&nbsp;|&nbsp; TWEAK TEAM (5) → TOP PROTO-VACCINE LAB</div>
+            <div style="font-size:13px;color:var(--text);margin-top:3px;">El's team secures Central Lab. Tweak's team rushes and holds the <span style="color:#f5d08a;font-weight:700;">Top-Left Proto-Vaccine Lab</span> — do not leave unless called.</div>
+          </div>
+        </div>
+
+        <!-- Bottom Push -->
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);">
+          <div style="min-width:42px;height:42px;background:rgba(155,89,182,.15);border:2px solid #9b59b6;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;color:#9b59b6;flex-shrink:0;">BOT</div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;letter-spacing:1px;">YUMI TEAM (6) → BOTTOM PROTO-VACCINE LAB</div>
+            <div style="font-size:13px;color:var(--text);margin-top:3px;">Yumi's team rushes and holds the <span style="color:#c39bd3;font-weight:700;">Bottom-Right Proto-Vaccine Lab</span> — do not leave unless called .</div>
+          </div>
+        </div>
+
+        <!-- Production -->
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:10px 0;">
+          <div style="min-width:42px;height:42px;background:rgba(52,152,219,.15);border:2px solid #3498db;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:13px;color:#3498db;flex-shrink:0;text-align:center;line-height:1.2;">PROD</div>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;letter-spacing:1px;">ASM TEAM + GREATGREENS TEAM + PANDAFAIL TEAM → PRODUCTION FACILITIES</div>
+            <div style="font-size:13px;color:var(--text);margin-top:3px;">After the Proto-Vaccine Lab fight is won, these 3 move to secure and hold <span style="color:#5dade2;font-weight:700;">1 Production Facility</span>.</div>
+          </div>
+        </div>
+
+        <div class="callout green" style="margin-top:10px;font-size:13px;">✅ <strong>Once labs are secured:</strong> Tweak &amp; Yumi teams hold their labs. Asm, Greatgreens &amp; Pandafail teams rotate to Production Facilities. Do NOT leave assigned positions.</div>
+      </div>
+    </div>
+
+    <!-- Phase 2: Holding -->
+    <h3 class="sub-header">🛡 PHASE 2 — MID GAME HOLD (2–18 min)</h3>
+    <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;margin-bottom:18px;">
+      <div style="padding:14px 16px;">
+        <ul class="step-list">
+          <li><strong>DaddyEl holds Central Lab the entire game</strong> — provides support, rallies enemies, coordinates the team.</li>
+          <li><strong>Tweak holds Top Proto-Vaccine Lab (top-left)</strong> — do not leave unless called to rotate.</li>
+          <li><strong>Yumi holds Bottom Proto-Vaccine Lab (bottom-right)</strong> — do not leave unless called to rotate .</li>
+          <li><strong>Asm, Greatgreens &amp; Pandafail teams each hold a Production Facility</strong> — move there after the Proto-Vaccine Lab fight is won. Hold it and farm points.</li>
+          <li><strong>All OTHER buildings → DO NOT TOUCH</strong> unless called by your leader.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Backup Plan -->
+    <h3 class="sub-header">🔄 BACKUP PLAN — IF YOU LOSE YOUR BUILDING</h3>
+    <div class="callout gold">
+      <strong>Rotate Clockwise</strong> to the next free building. Regroup your team there and continue collecting points. Never stand still — always be on a point.<br><br>
+      <strong style="color:#ff6b35;">⚡ MOST IMPORTANT:</strong> If we lose a building — <strong>collect the ground drops IMMEDIATELY.</strong> Those are free points the enemy must not get.
+    </div>
+
+    <!-- Phase 3: Final Rush -->
+    <h3 class="sub-header">🔥 PHASE 3 — LAST 2 MINUTES FINAL PUSH</h3>
+    <div style="background:var(--panel);border:1px solid var(--blood);border-radius:10px;margin-bottom:18px;">
+      <div style="padding:14px 16px;">
+        <ul class="step-list">
+          <li><strong>All leaders except DaddyEl:</strong> Capture ALL remaining buildings not yet held — leave nothing on the map.</li>
+          <li><strong>All members TP to their leader</strong> and push the final buildings together.</li>
+          <li><strong>Everyone collects final building drops</strong> — every point counts in the last 2 minutes.</li>
+          <li>⚠️ <strong>Only take buildings if you can collect the drops.</strong> A building with no collector is wasted effort.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout fire">🎯 <strong>WIN CONDITION:</strong> Stick to assigned buildings · Follow leader calls · Maximize point collection · Reinforce fast · Use multiple marches at ALL times</div>
+  </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SEC: TEAM ASSIGNMENTS                                  -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div id="vaccine-teams" class="sec-page">
+  <div class="page-inner">
+    <div class="section-title">TEAM ASSIGNMENTS</div>
+    <div class="section-sub">// WHO GOES WHERE · LEADERS &amp; MEMBERS //</div>
+
+    <div class="callout gold">⚔ <strong>RALLY RULE:</strong> Strongest Heroes will rally other players around you in <strong>1-minute rallies.</strong> Only take targets you know you will win.</div>
+
+    <div class="divider"></div>
+
+    <!-- TOP PUSH TEAMS -->
+    <h3 class="sub-header" style="color:var(--orange);">🔴 EL TEAM (7 players) — CENTRAL LAB &amp; TOP PROTO-VAX LAB</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px;">
+
+      <!-- El Team -->
+      <div style="background:var(--panel2);border:2px solid #8b0000;border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(139,0,0,.2);padding:12px 14px;border-bottom:1px solid #8b0000;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:#fff;">⚡ DADDYEL'S TEAM</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--crimson);letter-spacing:2px;margin-top:2px;">Center LEADER · MID CONTROL → At Start TOP SUPPORT</div>
+        </div>
+        <div style="padding:12px 14px;">
+          <div style="font-size:12px;color:var(--dim);margin-bottom:8px;font-family:'Share Tech Mono',monospace;">Start Top with Tweak then → HOLDS CENTRAL LAB ALL GAME</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.03);border-radius:5px;border-left:3px solid var(--crimson);">
+              <span style="font-size:16px;">👑</span>
+              <div><div style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#fff;">DaddyEl</div><div style="font-size:10px;color:var(--crimson);font-family:'Share Tech Mono',monospace;">LEADER · Central Lab</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.03);border-radius:5px;">
+              <span style="font-size:14px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#ddd;">Celsohrfilho</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.03);border-radius:5px;">
+              <span style="font-size:14px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#ddd;">mj1634</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.03);border-radius:5px;">
+              <span style="font-size:14px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#ddd;">satán</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.03);border-radius:5px;">
+              <span style="font-size:14px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#ddd;">gilbertoxic</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.03);border-radius:5px;">
+              <span style="font-size:14px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#ddd;">Stealursole</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.03);border-radius:5px;">
+              <span style="font-size:14px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#ddd;">REBELDE3000_</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.03);border-radius:5px;">
+              <span style="font-size:14px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#ddd;">Caotico</span>
+            </div>
+          </div>
+          <div class="callout" style="margin-top:10px;font-size:12px;">7 players. El holds Central Lab all game.</div>
+        </div>
+      </div>
+
+      <!-- Tweak Team -->
+      <div style="background:var(--panel2);border:2px solid var(--gold);border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(243,156,18,.1);padding:12px 14px;border-bottom:1px solid var(--gold);">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:#fff;">⭐ TWEAK TEAM</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;margin-top:2px;">TOP-LEFT PROTO-VAX LAB · HOLD — DO NOT LEAVE</div>
+        </div>
+        <div style="padding:12px 14px;">
+          <div style="font-size:12px;color:var(--dim);margin-bottom:8px;font-family:'Share Tech Mono',monospace;">RUSHES TOP-LEFT PROTO-VAX LAB · HOLDS entire Game</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.03);border-radius:5px;border-left:3px solid var(--gold);">
+              <span style="font-size:16px;">👑</span>
+              <div><div style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#fff;">XxTw3aKxX</div><div style="font-size:10px;color:var(--gold);font-family:'Share Tech Mono',monospace;">LEADER · TOP-LEFT LAB</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.03);border-radius:5px;">
+              <span style="font-size:14px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#ddd;">Cazador</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.03);border-radius:5px;">
+              <span style="font-size:14px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#ddd;">Zee_Captain</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.03);border-radius:5px;">
+              <span style="font-size:14px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#ddd;">S8n</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 8px;background:rgba(255,255,255,.03);border-radius:5px;">
+              <span style="font-size:14px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#ddd;">Hound</span>
+            </div>
+          </div>
+          <div class="callout gold" style="margin-top:10px;font-size:12px;">5 players. Holds Top-Left Proto-Vax Lab. Do not leave unless DaddyEl calls.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM + PRODUCTION TEAMS -->
+    <h3 class="sub-header" style="color:#9b59b6;">🟣 BOTTOM PROTO-VAX LAB — YUMI TEAM (5 players)</h3>
+    <div style="display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:22px;max-width:480px;">
+
+      <!-- Yumi Team -->
+      <div style="background:var(--panel2);border:2px solid #9b59b6;border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(155,89,182,.12);padding:10px 12px;border-bottom:1px solid #9b59b6;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:#fff;">🟣 YUMI TEAM</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#c39bd3;letter-spacing:1px;">BOTTOM-RIGHT PROTO-VAX LAB · HOLD entire Game</div>
+        </div>
+        <div style="padding:10px 12px;">
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;border-left:3px solid #9b59b6;">
+              <span style="font-size:13px;">👑</span><div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fff;">Yumi</div><div style="font-size:9px;color:#c39bd3;font-family:'Share Tech Mono',monospace;">LEADER · BOTTOM-RIGHT LAB</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;"><span style="font-size:12px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#ddd;">Nessie</span></div>
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;"><span style="font-size:12px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#ddd;">jerdog</span></div>
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;"><span style="font-size:12px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#ddd;">EVILREO</span></div>
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;"><span style="font-size:12px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#ddd;">Ehuno</span></div>
+          </div>
+          <div class="callout" style="margin-top:8px;font-size:11px;padding:6px 10px;border-color:#9b59b6;">5 players. Holds Bottom-Right Proto-Vax Lab. Do not leave.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTION FACILITY TRIO -->
+    <h3 class="sub-header" style="color:#3498db;">🔵 PRODUCTION FACILITY TEAMS — ASM, GREATGREENS &amp; PANDAFAIL (4 players each)</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:22px;">
+
+      <!-- Asm Team -->
+      <div style="background:var(--panel2);border:2px solid #3498db;border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(52,152,219,.1);padding:10px 12px;border-bottom:1px solid #3498db;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:#fff;">⚔ ASM TEAM</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#5dade2;letter-spacing:1px;">PRODUCTION FACILITY · 4 PLAYERS</div>
+        </div>
+        <div style="padding:10px 12px;">
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;border-left:3px solid #3498db;">
+              <span style="font-size:13px;">👑</span><div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fff;">Asm#1</div><div style="font-size:9px;color:#5dade2;font-family:'Share Tech Mono',monospace;">LEADER</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;"><span style="font-size:12px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#ddd;">Talar</span></div>
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;"><span style="font-size:12px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#ddd;">MECHA</span></div>
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;"><span style="font-size:12px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#ddd;">Game-Master</span></div>
+          </div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim);">Move to Production Facility after Proto-Vax Lab fight is won.</div>
+        </div>
+      </div>
+
+      <!-- GreatGreens Team -->
+      <div style="background:var(--panel2);border:2px solid #2ecc71;border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(46,204,113,.1);padding:10px 12px;border-bottom:1px solid #2ecc71;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:#fff;">🌿 GREATGREENS TEAM</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#2ecc71;letter-spacing:1px;">PRODUCTION FACILITY · 4 PLAYERS</div>
+        </div>
+        <div style="padding:10px 12px;">
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;border-left:3px solid #2ecc71;">
+              <span style="font-size:13px;">👑</span><div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fff;">Greatgreens</div><div style="font-size:9px;color:#2ecc71;font-family:'Share Tech Mono',monospace;">LEADER</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;"><span style="font-size:12px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#ddd;">ZDONALD</span></div>
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;"><span style="font-size:12px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#ddd;">GODEATER</span></div>
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;"><span style="font-size:12px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#ddd;">Hooza</span></div>
+          </div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim);">Move to Production Facility after Proto-Vax Lab fight is won.</div>
+        </div>
+      </div>
+
+      <!-- Pandafail Team -->
+      <div style="background:var(--panel2);border:2px solid #f39c12;border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(243,156,18,.1);padding:10px 12px;border-bottom:1px solid #f39c12;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:#fff;">🐼 PANDAFAIL TEAM</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:#f5d08a;letter-spacing:1px;">PRODUCTION FACILITY · 4 PLAYERS</div>
+        </div>
+        <div style="padding:10px 12px;">
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;border-left:3px solid #f39c12;">
+              <span style="font-size:13px;">👑</span><div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fff;">Pandafail</div><div style="font-size:9px;color:#f5d08a;font-family:'Share Tech Mono',monospace;">LEADER</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;"><span style="font-size:12px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#ddd;">Mini</span></div>
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;"><span style="font-size:12px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#ddd;">Guchy</span></div>
+            <div style="display:flex;align-items:center;gap:6px;padding:4px 7px;background:rgba(255,255,255,.03);border-radius:4px;"><span style="font-size:12px;">⚔</span><span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#ddd;">Horrordame</span></div>
+          </div>
+          <div style="margin-top:8px;font-size:11px;color:var(--dim);">Move to Production Facility after Proto-Vax Lab fight is won.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rotation Summary -->
+    <h3 class="sub-header">🔄 POST-CAPTURE ROTATION SUMMARY</h3>
+    <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:18px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead><tr style="border-bottom:2px solid var(--blood);">
+          <th style="text-align:left;padding:8px 12px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--dim);background:var(--panel2);">LEADER</th>
+          <th style="text-align:left;padding:8px 12px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--dim);background:var(--panel2);">START</th>
+          <th style="text-align:left;padding:8px 12px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--dim);background:var(--panel2);">AFTER WIN</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 12px;font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--crimson);">DaddyEl</td>
+            <td style="padding:8px 12px;">Top-Left Proto-Vaccine Lab</td>
+            <td style="padding:8px 12px;color:#2ecc71;font-weight:700;">Rotates to Central Lab after it opens</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 12px;font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--gold);">XxTw3aKxX</td>
+            <td style="padding:8px 12px;">Top-Left Proto-Vaccine Lab</td>
+            <td style="padding:8px 12px;color:#2ecc71;font-weight:700;">STAYS — holds top-left unless new calls</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 12px;font-family:'Bebas Neue',sans-serif;font-size:16px;color:#c39bd3;">Yumi</td>
+            <td style="padding:8px 12px;">Bottom-Right Proto-Vaccine Lab</td>
+            <td style="padding:8px 12px;color:#2ecc71;font-weight:700;">STAYS — holds bottom-right unless new calls</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 12px;font-family:'Bebas Neue',sans-serif;font-size:16px;color:#2ecc71;">Greatgreens</td>
+            <td style="padding:8px 12px;">Top-Left Proto-Vaccine Lab</td>
+            <td style="padding:8px 12px;color:var(--gold);font-weight:700;">→ Production Facility after labs won</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:8px 12px;font-family:'Bebas Neue',sans-serif;font-size:16px;color:#5dade2;">Asm#1</td>
+            <td style="padding:8px 12px;">Bottom-Right Proto-Vaccine Lab</td>
+            <td style="padding:8px 12px;color:var(--gold);font-weight:700;">→ Production Facility after labs won</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 12px;font-family:'Bebas Neue',sans-serif;font-size:16px;color:#f5d08a;">Pandafail</td>
+            <td style="padding:8px 12px;">Bottom-Right Proto-Vaccine Lab</td>
+            <td style="padding:8px 12px;color:var(--gold);font-weight:700;">→ Production Facility after labs won</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SEC: TACTICS & RULES                                   -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div id="vaccine-tactics" class="sec-page">
+  <div class="page-inner">
+    <div class="section-title">TACTICS &amp; COMBAT RULES</div>
+    <div class="section-sub">// EVERY PLAYER MUST KNOW THESE //</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+
+      <!-- Collection Strategy -->
+      <div style="background:var(--panel2);border:1px solid #2ecc71;border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(46,204,113,.1);padding:10px 14px;border-bottom:1px solid #2ecc71;display:flex;align-items:center;gap:10px;">
+          <span style="font-size:26px;">📦</span>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;color:#fff;">COLLECTION STRATEGY</div>
+        </div>
+        <div style="padding:12px 14px;font-size:13px;">
+          <div class="callout green" style="margin-bottom:8px;">✅ Always send <strong>5 marches</strong> to collecting spots</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:#2ecc71;margin-top:1px;">▶</span> Half marches are enough to collect drops</li>
+            <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:#2ecc71;margin-top:1px;">▶</span> This lets you collect MORE points faster</li>
+            <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:#2ecc71;margin-top:1px;">▶</span> Keeps more troops available for fighting</li>
+            <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:#2ecc71;margin-top:1px;">▶</span> Goal: maximum point farming — <strong>whole map should be ours</strong></li>
+          </ul>
+          <div style="margin-top:8px;background:rgba(46,204,113,.05);border-radius:6px;padding:8px;font-size:12px;color:#2ecc71;font-family:'Share Tech Mono',monospace;">Collected points CANNOT be taken back by enemy!</div>
+        </div>
+      </div>
+
+      <!-- Rally & Combat -->
+      <div style="background:var(--panel2);border:1px solid var(--crimson);border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(192,57,43,.1);padding:10px 14px;border-bottom:1px solid var(--crimson);display:flex;align-items:center;gap:10px;">
+          <span style="font-size:26px;">📡</span>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;color:#fff;">RALLY &amp; COMBAT</div>
+        </div>
+        <div style="padding:12px 14px;font-size:13px;">
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+            <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--crimson);margin-top:1px;">▶</span> Every member joins ALL rallies from their leader</li>
+            <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--crimson);margin-top:1px;">▶</span> If your leader gets rallied → <strong style="color:#fff;">reinforce immediately</strong></li>
+            <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--gold);margin-top:1px;">⭐</span> <strong>Strongest Heroes rally in 1-min rallies</strong> — only target enemies you know you can beat</li>
+            <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--crimson);margin-top:1px;">▶</span> Send marches to vaccine collecting spots continuously</li>
+            <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--crimson);margin-top:1px;">▶</span> Always farm points — do not stand idle</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Base Attack Rules -->
+      <div style="background:var(--panel2);border:1px solid var(--gold);border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(243,156,18,.08);padding:10px 14px;border-bottom:1px solid var(--gold);display:flex;align-items:center;gap:10px;">
+          <span style="font-size:26px;">🏰</span>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;color:#fff;">BASE UNDER ATTACK</div>
+        </div>
+        <div style="padding:12px 14px;font-size:13px;">
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+            <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--gold);margin-top:1px;">▶</span> Send ALL troops out immediately</li>
+            <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--gold);margin-top:1px;">▶</span> Reinforce teammates or join rallies</li>
+            <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--gold);margin-top:1px;">▶</span> Accept the base hit if needed — TP back later</li>
+          </ul>
+          <div class="callout gold" style="margin-top:8px;font-size:12px;">Never let troops sit in base during a fight!</div>
+        </div>
+      </div>
+
+      <!-- Building Defense Rule -->
+      <div style="background:var(--panel2);border:1px solid #ff4500;border-radius:10px;overflow:hidden;">
+        <div style="background:rgba(255,69,0,.08);padding:10px 14px;border-bottom:1px solid #ff4500;display:flex;align-items:center;gap:10px;">
+          <span style="font-size:26px;">🛡</span>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;color:#fff;">BUILDING DEFENSE</div>
+        </div>
+        <div style="padding:12px 14px;font-size:13px;">
+          If you cannot win a rally inside a building but you are stronger overall:
+          <ol style="margin:8px 0 0 16px;display:flex;flex-direction:column;gap:4px;">
+            <li>Rally the <strong style="color:#fff;">enemy leader's base</strong></li>
+            <li>Force them to teleport away</li>
+            <li>Take the building back afterwards</li>
+          </ol>
+          <div class="callout fire" style="margin-top:8px;font-size:12px;">🔥 Pressure their base = free your building!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Constant Rally Pressure -->
+    <h3 class="sub-header">📡 CONSTANT RALLY PRESSURE</h3>
+    <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;">
+      <div style="padding:10px 16px;background:var(--panel2);border-bottom:1px solid var(--border);font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--dim);">KEEP ENEMIES BUSY — NEVER LET THEM REST</div>
+      <div style="padding:14px 16px;">
+
+        <!-- Building Leaders -->
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 12px;background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.3);border-radius:8px;margin-bottom:10px;">
+          <span style="font-size:24px;flex-shrink:0;">👑</span>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;letter-spacing:1px;">BUILDING LEADERS — USE 2ND BEST SQUAD</div>
+            <div style="font-size:13px;color:var(--text);margin-top:4px;">DaddyEl, XxTw3aKxX, Pandafail, GreatGreens, ASM and Yumi must <strong style="color:#fff;">keep their best squad in the building</strong> at all times to defend. Rally enemy bases nearby using your <strong style="color:var(--crimson);">2nd best squad</strong> — never leave your building undefended.</div>
+          </div>
+        </div>
+
+        <!-- All other members -->
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 12px;background:rgba(255,69,0,.08);border:1px solid rgba(255,69,0,.3);border-radius:8px;margin-bottom:10px;">
+          <span style="font-size:24px;flex-shrink:0;">⚔</span>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;letter-spacing:1px;">ALL OTHER MEMBERS — USE BEST SQUAD</div>
+            <div style="font-size:13px;color:var(--text);margin-top:4px;">Everyone NOT holding a building rallies enemy bases in your area <strong style="color:#fff;">constantly</strong> with their <strong style="color:#ff6b35;">best squad</strong>. Keep pressure up — a busy enemy cannot focus on your buildings.</div>
+          </div>
+        </div>
+
+        <!-- Becca / Leon / Tyrell rule -->
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 12px;background:rgba(52,152,219,.08);border:1px solid rgba(52,152,219,.3);border-radius:8px;">
+          <span style="font-size:24px;flex-shrink:0;">🌟</span>
+          <div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;letter-spacing:1px;">REBECCA · LEON · TYRELL — INTO BUILDINGS OR RALLIES</div>
+            <div style="font-size:13px;color:var(--text);margin-top:4px;">These three are your strongest force multipliers. Always send <strong style="color:#5dade2;">Rebecca, Leon or Tyrell</strong> either into a building garrison or as rally leader — never leave them idle. Their field skills boost the entire squad and are wasted sitting in base.</div>
+            <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
+              <span style="background:rgba(192,57,43,.2);border:1px solid var(--crimson);border-radius:4px;padding:3px 10px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--crimson);">REBECCA → SUSTAIN BUFF</span>
+              <span style="background:rgba(52,152,219,.2);border:1px solid #3498db;border-radius:4px;padding:3px 10px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#5dade2;">LEON → ATK GARRISON BONUS</span>
+              <span style="background:rgba(46,204,113,.2);border:1px solid #2ecc71;border-radius:4px;padding:3px 10px;font-family:'Share Tech Mono',monospace;font-size:10px;color:#2ecc71;">TYRELL → FIELD BOOST</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="callout fire">🔥 <strong>Golden Rule:</strong> There is NEVER a moment where you should be standing idle. No building to hold? Rally. No rally ready? Collect drops. Always be doing something.</div>
+
+    <!-- Base Attack Rules -->
+    <h3 class="sub-header">⚠️ BASE ATTACK RULES</h3>
+    <div class="callout fire">
+      Attacking enemy bases causes heavy losses and gives them an advantage.<br>
+      <strong style="color:#fff;">ONLY attack MUCH weaker bases.</strong> Do NOT randomly attack.
+    </div>
+
+    <!-- Building Priority -->
+    <h3 class="sub-header">🏆 BUILDING PRIORITY RULE</h3>
+    <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;">
+      <div style="padding:14px 16px;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:12px;padding:8px 12px;background:rgba(139,0,0,.15);border:1px solid var(--blood);border-radius:6px;">
+            <span style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--crimson);min-width:28px;">1</span>
+            <div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;">CENTRAL LAB</div><div style="font-size:12px;color:var(--dim);">Hold all game — highest VP building on the map</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:8px 12px;background:rgba(46,204,113,.08);border:1px solid #27ae60;border-radius:6px;">
+            <span style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:#2ecc71;min-width:28px;">2</span>
+            <div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;">PROTO-VACCINE LABS</div><div style="font-size:12px;color:var(--dim);">Top-Left (Tweak) &amp; Bottom-Right (Yumi) — 6k capture + 1,200/min each</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:8px 12px;background:rgba(243,156,18,.08);border:1px solid var(--gold);border-radius:6px;">
+            <span style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--gold);min-width:28px;">3</span>
+            <div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;">RANDOM STORAGES</div><div style="font-size:12px;color:var(--dim);">Spawn twice — rush to collect immediately</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:8px 12px;background:rgba(52,152,219,.08);border:1px solid #3498db;border-radius:6px;">
+            <span style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:#5dade2;min-width:28px;">4</span>
+            <div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;">PRODUCTION FACILITIES</div><div style="font-size:12px;color:var(--dim);">4× around the map — rotate here as backup</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:8px 12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:6px;">
+            <span style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--dim);min-width:28px;">5</span>
+            <div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--dim);">BUFF BUILDINGS</div><div style="font-size:12px;color:#555;">Low VP value — not worth contesting if main objectives need attention</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout green">✅ <strong>DO NOT take buildings where none of our players are nearby.</strong> Enemies will collect the drops and we gain nothing. Focus on spots we can hold AND collect.</div>
+  </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- SEC: BUILDINGS REFERENCE                               -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div id="vaccine-buildings" class="sec-page">
+  <div class="page-inner">
+    <div class="section-title">BUILDINGS REFERENCE</div>
+    <div class="section-sub">// FULL STATS FOR ALL VACCINE LAB BUILDINGS //</div>
+
+    <!-- Central Lab -->
+    <div style="background:var(--panel);border:2px solid var(--blood);border-radius:12px;overflow:hidden;margin-bottom:18px;">
+      <div style="background:rgba(139,0,0,.2);padding:14px 18px;border-bottom:2px solid var(--blood);display:flex;align-items:center;gap:16px;">
+        <span style="font-size:40px;">🏛</span>
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;color:#fff;">CENTRAL LABORATORY</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--crimson);letter-spacing:2px;margin-top:2px;">HIGHEST VP · HELD BY DADDYEL ALL GAME</div>
+        </div>
+      </div>
+      <div style="padding:16px 18px;">
+        <p style="font-size:14px;margin-bottom:14px;">The most important building on the map. Located dead center. Controlling this building provides the highest Vaccine Points and strategic vision over the entire battlefield.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="background:rgba(255,255,255,.04);border-radius:8px;padding:10px 14px;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:6px;">ALLIANCE VACCINE POINTS</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--crimson);">HIGHEST</div>
+            <div style="font-size:12px;color:var(--dim);">First capture + passive/min</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border-radius:8px;padding:10px 14px;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:6px;">STRATEGIC VALUE</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--crimson);">CRITICAL</div>
+            <div style="font-size:12px;color:var(--dim);">Controls map center &amp; sight lines</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Warehouse -->
+    <div style="background:var(--panel);border:2px solid #27ae60;border-radius:12px;overflow:hidden;margin-bottom:18px;">
+      <div style="background:rgba(39,174,96,.1);padding:14px 18px;border-bottom:2px solid #27ae60;display:flex;align-items:center;gap:16px;">
+        <span style="font-size:40px;">🏗</span>
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;color:#fff;">PROTO-VACCINE WAREHOUSE</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#2ecc71;letter-spacing:2px;margin-top:2px;">2 TOTAL · EAST AND WEST OF CENTRAL LAB</div>
+        </div>
+      </div>
+      <div style="padding:16px 18px;">
+        <p style="font-size:14px;margin-bottom:14px;">A facility storing vaccines that provide various benefits. One in the east, one in the west — both flanking the Central Lab. Second highest VP after the Central Lab and strategically vital due to their central position.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+          <div style="background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.3);border-radius:8px;padding:10px 14px;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:6px;">ALLIANCE VP — FIRST CAPTURE</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#2ecc71;">6,000</div>
+          </div>
+          <div style="background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.3);border-radius:8px;padding:10px 14px;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:6px;">ALLIANCE VP — MAINTAINING</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#2ecc71;">+1,200<span style="font-size:16px;">/min</span></div>
+          </div>
+          <div style="background:rgba(46,204,113,.05);border:1px solid rgba(46,204,113,.2);border-radius:8px;padding:10px 14px;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:6px;">PERSONAL VP — FIRST CAPTURE</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#27ae60;">3,000</div>
+          </div>
+          <div style="background:rgba(46,204,113,.05);border:1px solid rgba(46,204,113,.2);border-radius:8px;padding:10px 14px;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:6px;">PERSONAL VP — MAINTAINING</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#27ae60;">+600<span style="font-size:16px;">/min</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Production Facility -->
+    <div style="background:var(--panel);border:2px solid #3498db;border-radius:12px;overflow:hidden;margin-bottom:18px;">
+      <div style="background:rgba(52,152,219,.1);padding:14px 18px;border-bottom:2px solid #3498db;display:flex;align-items:center;gap:16px;">
+        <span style="font-size:40px;">🏭</span>
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;color:#fff;">PROTO-VACCINE PRODUCTION FACILITY</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#5dade2;letter-spacing:2px;margin-top:2px;">4 TOTAL · NORTH / SOUTH / EAST / WEST</div>
+        </div>
+      </div>
+      <div style="padding:16px 18px;">
+        <p style="font-size:14px;margin-bottom:14px;">A facility that produces vaccines treating a wide range of diseases. Four factories located at each compass point around the battlefield. Lower VP than warehouses but still worth contesting as backup objectives.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+          <div style="background:rgba(52,152,219,.08);border:1px solid rgba(52,152,219,.3);border-radius:8px;padding:10px 14px;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:6px;">ALLIANCE VP — FIRST CAPTURE</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#5dade2;">2,000</div>
+          </div>
+          <div style="background:rgba(52,152,219,.08);border:1px solid rgba(52,152,219,.3);border-radius:8px;padding:10px 14px;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:6px;">ALLIANCE VP — MAINTAINING</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#5dade2;">+400<span style="font-size:16px;">/min</span></div>
+          </div>
+          <div style="background:rgba(52,152,219,.05);border:1px solid rgba(52,152,219,.2);border-radius:8px;padding:10px 14px;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:6px;">PERSONAL VP — FIRST CAPTURE</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#3498db;">1,000</div>
+          </div>
+          <div style="background:rgba(52,152,219,.05);border:1px solid rgba(52,152,219,.2);border-radius:8px;padding:10px 14px;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:6px;">PERSONAL VP — MAINTAINING</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#3498db;">+200<span style="font-size:16px;">/min</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Random Storage -->
+    <div style="background:var(--panel);border:2px solid var(--gold);border-radius:12px;overflow:hidden;margin-bottom:18px;">
+      <div style="background:rgba(243,156,18,.1);padding:14px 18px;border-bottom:2px solid var(--gold);display:flex;align-items:center;gap:16px;">
+        <span style="font-size:40px;">📦</span>
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;color:#fff;">PROTO-VACCINE STORAGE</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;margin-top:2px;">SPAWNS 2× PER BATTLE · RANDOM LOCATION</div>
+        </div>
+      </div>
+      <div style="padding:16px 18px;">
+        <p style="font-size:14px;margin-bottom:14px;">During battle, Proto-Vaccine Storages may spawn randomly across the battlefield. These appear <strong style="color:var(--gold);">multiple Times</strong> per battle and significantly influence the chance of victory.</p>
+        <div class="callout gold">⚡ <strong>ACTION:</strong> Send squads immediately when a storage spawns. Use 5 marches with half troops each — collect more, fight more. These free points cannot be taken back once collected!</div>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- end vaccine page -->
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- COMMUNITY CHATBOX (inside Vaccine Lab Raid tab)        -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div style="max-width:1100px;margin:0 auto;padding:20px 20px 40px;">
+    <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--panel);">
+
+      <!-- Chat Header -->
+      <div style="background:linear-gradient(90deg,#1a0000,var(--panel2));padding:14px 20px;border-bottom:1px solid var(--blood);display:flex;align-items:center;gap:12px;">
+        <span style="font-size:20px;">💬</span>
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:#fff;">COMMUNITY CHAT</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px;">RACCOON TASK GROUP · LIVE</div>
+        </div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:6px;">
+          <div id="chat-online-dot" style="width:8px;height:8px;background:#2ecc71;border-radius:50%;animation:pulse 2s infinite;"></div>
+          <span id="chat-online-count" style="font-family:'Share Tech Mono',monospace;font-size:10px;color:#2ecc71;letter-spacing:1px;">ONLINE</span>
+        </div>
+      </div>
+
+      <!-- Name input bar -->
+      <div id="chat-name-bar" style="padding:12px 16px;background:rgba(139,0,0,0.08);border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;">
+        <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px;white-space:nowrap;">YOUR NAME:</span>
+        <input id="chat-name-input" type="text" maxlength="20" placeholder="Enter callsign..." style="background:var(--dark);border:1px solid var(--border);border-radius:4px;color:#fff;font-family:'Share Tech Mono',monospace;font-size:12px;padding:5px 10px;flex:1;outline:none;max-width:200px;" />
+        <button onclick="saveName()" style="background:var(--blood);border:none;border-radius:4px;color:#fff;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px;padding:6px 14px;cursor:pointer;">SET</button>
+        <span id="chat-name-display" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gold);display:none;"></span>
+        <button id="chat-name-change" onclick="changeName()" style="display:none;background:none;border:1px solid var(--border);border-radius:4px;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:10px;padding:4px 8px;cursor:pointer;">CHANGE</button>
+      </div>
+
+      <!-- Messages -->
+      <div id="chat-messages" style="height:320px;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth;">
+        <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px;padding:20px 0;" id="chat-loading">
+          ☣ CONNECTING TO RACCOON CITY...
+        </div>
+      </div>
+
+      <!-- Input bar -->
+      <div style="padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;">
+        <input id="chat-input" type="text" maxlength="300" placeholder="Type a message... (Enter to send)" 
+          style="flex:1;background:var(--dark);border:1px solid var(--border);border-radius:6px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:14px;padding:8px 12px;outline:none;transition:border-color .2s;"
+          onfocus="this.style.borderColor='var(--crimson)'" 
+          onblur="this.style.borderColor='var(--border)'"
+          onkeydown="if(event.key==='Enter')sendMessage()" />
+        <button onclick="sendMessage()" style="background:var(--blood);border:none;border-radius:6px;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;padding:8px 20px;cursor:pointer;transition:background .2s;white-space:nowrap;" onmouseover="this.style.background='var(--crimson)'" onmouseout="this.style.background='var(--blood)'">SEND ☣</button>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- end vaccine top-page -->
 
 <footer>
   ☣ RESIDENT EVIL: SURVIVAL UNIT — COMMUNITY FULL GUIDE · S1 / S2 / S3 ☣<br>
