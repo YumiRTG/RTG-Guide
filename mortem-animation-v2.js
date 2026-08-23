@@ -1,210 +1,25 @@
 (function(){
-  var page=document.getElementById('mortem');
-  if(!page)return;
-
-  // Move Mortem to the first main tab.
-  var topTabs=document.querySelector('.top-tabs');
-  if(topTabs){
-    var mortemTab=Array.from(topTabs.querySelectorAll('.top-tab-btn')).find(function(btn){
-      return (btn.getAttribute('onclick')||'').indexOf("'mortem'")!==-1;
-    });
-    if(mortemTab && topTabs.firstElementChild!==mortemTab) topTabs.insertBefore(mortemTab,topTabs.firstElementChild);
-  }
-
-  if(!document.getElementById('mortem-v4-style')){
-    document.head.insertAdjacentHTML('beforeend','<style id="mortem-v4-style">'+[
-      '.mortem-v4{margin:16px 0;background:linear-gradient(180deg,#111,#090909);border:1px solid var(--border);border-radius:14px;padding:16px;overflow:hidden;box-shadow:0 14px 36px rgba(0,0,0,.35)}',
-      '.m4-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.07)}',
-      '.m4-head h4{font-family:"Bebas Neue",sans-serif;font-size:30px;letter-spacing:2px;color:#fff;margin:0;line-height:1}',
-      '.m4-head p{margin:5px 0 0;color:#aaa;font-size:13px}',
-      '.m4-badges{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}',
-      '.m4-badge{font:10px "Share Tech Mono",monospace;letter-spacing:1px;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#ddd}',
-      '.m4-badge.red{background:rgba(192,57,43,.15);border-color:rgba(192,57,43,.35);color:#ffc3ba}',
-      '.m4-badge.green{background:rgba(46,204,113,.12);border-color:rgba(46,204,113,.3);color:#dcffea}',
-      '.m4-phases{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px}',
-      '.m4-phase{border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:9px 10px;background:rgba(255,255,255,.025);transition:.3s}',
-      '.m4-phase small{display:block;font:9px "Share Tech Mono",monospace;color:#777;letter-spacing:1px}',
-      '.m4-phase b{font-size:12px;color:#ccc}',
-      '.m4-phase.active{background:rgba(52,152,219,.15);border-color:rgba(52,152,219,.6);box-shadow:0 0 22px rgba(52,152,219,.12)}',
-      '.m4-phase.active b{color:#fff}',
-      '.m4-status{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.03);padding:11px 13px;border-radius:9px;margin-bottom:12px}',
-      '.m4-status strong{font-family:"Bebas Neue",sans-serif;letter-spacing:2px;font-size:22px;color:#fff}',
-      '.m4-status span{font-size:12px;color:#aaa}',
-      '.m4-loop{font:10px "Share Tech Mono",monospace!important;color:#f5d08a!important;white-space:nowrap}',
-      '.m4-stage{position:relative;height:560px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.05);background:radial-gradient(circle at 55% 47%,rgba(139,0,0,.18),transparent 24%),radial-gradient(circle at 29% 27%,rgba(52,152,219,.08),transparent 17%),linear-gradient(180deg,#151515,#090909)}',
-      '.m4-stage:before{content:"";position:absolute;inset:22px;border:1px dashed rgba(255,255,255,.07);border-radius:50%}',
-      '.m4-alerts{position:absolute;top:12px;left:14px;right:14px;display:flex;justify-content:space-between;gap:8px;z-index:8;pointer-events:none}',
-      '.m4-alert{font:9px "Share Tech Mono",monospace;letter-spacing:1px;padding:4px 8px;border-radius:999px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.1);color:#bbb}',
-      '.m4-alert.red{color:#ffbdb3;border-color:rgba(192,57,43,.35);background:rgba(192,57,43,.12)}',
-      '.m4-alert.blue{color:#dff2ff;border-color:rgba(52,152,219,.35);background:rgba(52,152,219,.1)}',
-      '.m4-cluster{position:absolute;left:14%;top:13%;width:31%;height:33%;border:1px dashed rgba(52,152,219,.28);border-radius:28px;z-index:1;box-shadow:inset 0 0 28px rgba(52,152,219,.05)}',
-      '.m4-cluster:before{content:"RALLY CLUSTER — MEMBERS STAY HERE";position:absolute;top:-10px;left:12px;font:9px "Share Tech Mono",monospace;letter-spacing:.8px;color:#9fd4ff;background:#0d1012;border:1px solid rgba(52,152,219,.25);padding:2px 6px;border-radius:999px}',
-      '.m4-bosswrap{position:absolute;left:56%;top:48%;width:165px;transform:translate(-50%,-50%);z-index:5;text-align:center}',
-      '.m4-boss{position:relative;width:128px;height:128px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff8d68,#800606 70%);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 0 38px rgba(192,57,43,.28);animation:m4BossPulse 2.2s ease-in-out infinite}',
-      '.m4-boss:before{content:"☣";position:absolute;font-size:54px;opacity:.12}',
-      '.m4-boss strong{font-family:"Bebas Neue",sans-serif;font-size:28px;letter-spacing:2px;z-index:2}',
-      '.m4-shieldring{position:absolute;inset:-11px;border-radius:50%;border:3px solid rgba(93,173,226,.78);box-shadow:0 0 24px rgba(93,173,226,.48),inset 0 0 24px rgba(93,173,226,.14);transition:.35s}',
-      '.m4-shieldring.broken{opacity:0;transform:scale(1.18)}',
-      '.m4-armorplate{position:absolute;inset:8px;border-radius:50%;border:4px double rgba(220,220,220,.72);box-shadow:inset 0 0 20px rgba(255,255,255,.08);transition:.35s}',
-      '.m4-armorplate.broken{opacity:0;transform:scale(.82)}',
-      '.m4-bars{margin-top:14px;background:rgba(0,0,0,.44);border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:8px 9px;text-align:left}',
-      '.m4-barrow{display:grid;grid-template-columns:48px 1fr 34px;gap:6px;align-items:center;margin:5px 0;font:9px "Share Tech Mono",monospace;color:#bdbdbd}',
-      '.m4-track{height:8px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;border:1px solid rgba(255,255,255,.05)}',
-      '.m4-fill{height:100%;width:100%;transition:width .4s ease}',
-      '.m4-fill.shield{background:linear-gradient(90deg,#3498db,#85c9ff)}',
-      '.m4-fill.armor{background:linear-gradient(90deg,#7f8c8d,#ecf0f1)}',
-      '.m4-fill.hp{background:linear-gradient(90deg,#c0392b,#ff6b57)}',
-      '.m4-weakness{margin-top:8px;border-radius:8px;border:1px solid rgba(243,156,18,.28);background:rgba(243,156,18,.08);padding:7px 8px;text-align:center;font:10px "Share Tech Mono",monospace;color:#f7d89b;opacity:0;transform:translateY(6px);transition:.3s}',
-      '.m4-weakness.on{opacity:1;transform:none}',
-      '.m4-weakness b{color:#fff;font-size:11px}',
-      '.m4-leader{position:absolute;width:68px;height:68px;border-radius:50%;overflow:visible;z-index:4;opacity:0;transform:scale(.5);transition:left .7s ease,top .7s ease,opacity .35s ease,transform .45s ease}',
-      '.m4-leader .pic{width:100%;height:100%;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px rgba(52,152,219,.3),0 0 22px rgba(52,152,219,.22),0 10px 22px rgba(0,0,0,.4)}',
-      '.m4-leader img{width:100%;height:100%;object-fit:cover;display:block}',
-      '.m4-leader .lbl{position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);font:9px "Share Tech Mono",monospace;color:#dff2ff;background:#0d1114;border:1px solid rgba(52,152,219,.28);padding:2px 5px;border-radius:999px;white-space:nowrap}',
-      '.m4-leader.on{opacity:1;transform:scale(1)}',
-      '.m4-leader.tele{animation:m4Teleport .85s ease}',
-      '.m4-member{position:absolute;width:22px;height:22px;border-radius:50%;z-index:4;background:linear-gradient(#3ad47b,#167043);border:1px solid rgba(255,255,255,.12);box-shadow:0 0 12px rgba(46,204,113,.18);opacity:0;transform:scale(.35);transition:opacity .3s,transform .45s,box-shadow .25s,background .25s}',
-      '.m4-member.on{opacity:1;transform:scale(1)}',
-      '.m4-member.join{box-shadow:0 0 18px rgba(46,204,113,.75)}',
-      '.m4-member.troop{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;font:bold 10px "Share Tech Mono",monospace;box-shadow:0 0 14px rgba(255,255,255,.15)}',
-      '.m4-member.troop.shooter{background:linear-gradient(#b57cff,#6c3bb0)}',
-      '.m4-member.troop.attacker{background:linear-gradient(#ff7b69,#a93326)}',
-      '.m4-member.troop.infantry{background:linear-gradient(#6fb9ff,#28679e)}',
-      '.m4-rally{position:absolute;z-index:6;padding:4px 7px;border-radius:999px;background:rgba(52,152,219,.15);border:1px solid rgba(52,152,219,.45);color:#dff3ff;font:9px "Share Tech Mono",monospace;opacity:0;transform:translateY(6px);transition:.25s}',
-      '.m4-rally.on{opacity:1;transform:none}',
-      '.m4-rally.full{background:rgba(46,204,113,.16);border-color:rgba(46,204,113,.55);color:#e3ffec}',
-      '.m4-svg{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}',
-      '.m4-svg line{stroke-linecap:round;opacity:0}',
-      '.m4-svg line.on{opacity:1;animation:m4Beam .72s linear infinite}',
-      '.m4-joinline{stroke:#39d77c;stroke-width:.42}',
-      '.m4-attackline{stroke:#7dc9ff;stroke-width:.6;filter:drop-shadow(0 0 2px #7dc9ff)}',
-      '.m4-individual{stroke:#ffd166;stroke-width:.34;filter:drop-shadow(0 0 1.5px #ffd166)}',
-      '.m4-caption{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:8;padding:7px 11px;border-radius:8px;background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.08);font:9px "Share Tech Mono",monospace;color:#ddd;white-space:nowrap}',
-      '@keyframes m4BossPulse{0%,100%{box-shadow:0 0 12px rgba(192,57,43,.2)}50%{box-shadow:0 0 36px rgba(192,57,43,.5)}}',
-      '@keyframes m4Teleport{0%{filter:brightness(2) blur(2px);transform:scale(.55)}50%{filter:brightness(1.3);transform:scale(1.12)}100%{filter:none;transform:scale(1)}}',
-      '@keyframes m4Beam{0%,100%{filter:brightness(.78)}50%{filter:brightness(1.7)}}',
-      '@media(max-width:820px){.m4-phases{grid-template-columns:1fr 1fr}.m4-stage{height:650px}.m4-status,.m4-head{flex-direction:column;align-items:flex-start}.m4-badges{justify-content:flex-start}.m4-alerts{flex-wrap:wrap}.m4-bosswrap{left:58%}}'
-    ].join('')+'</style>');
-  }
-
-  // Replace previous animation blocks.
-  page.querySelectorAll('.mortem-sequence,.mortem-x-card,.mortem-sim-card,.mortem-map-card,.mortem-v4').forEach(function(el){el.remove();});
-  var heading=Array.from(page.querySelectorAll('h3.sub-header')).find(function(h){return h.textContent.indexOf('ANIMIERTE ALLIANZ-AUFSTELLUNG')!==-1;});
-  if(!heading)return;
-  var info=heading.nextElementSibling;
-  if(info&&info.classList.contains('callout')){
-    info.innerHTML='<strong>Live-Ablauf:</strong> Erst teleportiert <strong>ein Rally-Leader nach dem anderen</strong> links oberhalb von Mortem. Danach teleportieren <strong>alle Spieler nur direkt neben den Leader-Cluster</strong>. Dann: Rally starten → alle 4 Rallys joinen → 4 Rallys greifen Mortem an → Schild &amp; Rüstung brechen → Spieler greifen einzeln mit der passenden Truppenart gegen Mortems Schwäche an.';
-  }
-
-  var leaderData=[
-    {name:'SHERRY',img:'assets/heroes/s4-sherry.jpg',sx:3,sy:82,ex:26,ey:20},
-    {name:'JAKE',img:'assets/heroes/s4-jake.jpg',sx:5,sy:9,ex:35,ey:18},
-    {name:'PIERS',img:'assets/heroes/s4-piers.jpg',sx:82,sy:80,ex:24,ey:32},
-    {name:'EXCELLA',img:'assets/heroes/s5-excella.jpg',sx:84,sy:12,ex:36,ey:31}
-  ];
-  // Members stay tightly around the leaders only.
-  var memberPos=[[16,15],[20,12],[25,11],[31,12],[39,13],[44,16],[14,22],[18,25],[22,27],[29,25],[40,24],[45,23],[13,31],[17,35],[22,39],[28,38],[34,39],[41,37],[46,33],[16,42],[23,44],[31,43],[38,44],[44,40]];
-  var box=document.createElement('div');
-  box.className='mortem-v4';
-  box.innerHTML='<div class="m4-head"><div><h4>☣ MORTEM — ALLIANCE COMBAT SIMULATION</h4><p>Die komplette Reihenfolge wird live gezeigt — inklusive Boss-Schild, Rüstung, HP und Schwächenphase.</p></div><div class="m4-badges"><span class="m4-badge red">BIOHAZARD BOSS</span><span class="m4-badge">4 RALLY LEADERS</span><span class="m4-badge green">MEMBERS STAY CLOSE</span></div></div>'+
-    '<div class="m4-phases">'+
-      '<div class="m4-phase" data-p="1"><small>PHASE 1</small><b>Leader teleportieren</b></div>'+
-      '<div class="m4-phase" data-p="2"><small>PHASE 2</small><b>Member daneben</b></div>'+
-      '<div class="m4-phase" data-p="3"><small>PHASE 3</small><b>Rally start + join</b></div>'+
-      '<div class="m4-phase" data-p="4"><small>PHASE 4</small><b>4 Rally-Angriffe</b></div>'+
-      '<div class="m4-phase" data-p="5"><small>PHASE 5</small><b>Schwäche ausnutzen</b></div>'+
-    '</div>'+
-    '<div class="m4-status"><div><strong id="m4Title"></strong><br><span id="m4Sub"></span></div><span class="m4-loop">AUTO LOOP · SHOOTER → ATTACKER → INFANTRY</span></div>'+
-    '<div class="m4-stage" id="m4Stage">'+
-      '<div class="m4-alerts"><span class="m4-alert red">☣ MORTEM ACTIVE</span><span class="m4-alert blue">LEADERS FIRST</span><span class="m4-alert">MEMBERS ONLY BESIDE LEADERS</span></div>'+
-      '<div class="m4-cluster"></div>'+
-      '<svg class="m4-svg" viewBox="0 0 100 100" preserveAspectRatio="none" id="m4Svg"></svg>'+
-      '<div class="m4-bosswrap"><div class="m4-boss"><div class="m4-shieldring" id="m4ShieldRing"></div><div class="m4-armorplate" id="m4ArmorPlate"></div><strong>MORTEM</strong></div>'+
-      '<div class="m4-bars">'+
-        '<div class="m4-barrow"><span>SHIELD</span><div class="m4-track"><div class="m4-fill shield" id="m4Shield"></div></div><b id="m4ShieldTxt">100%</b></div>'+
-        '<div class="m4-barrow"><span>ARMOR</span><div class="m4-track"><div class="m4-fill armor" id="m4Armor"></div></div><b id="m4ArmorTxt">100%</b></div>'+
-        '<div class="m4-barrow"><span>HP</span><div class="m4-track"><div class="m4-fill hp" id="m4Hp"></div></div><b id="m4HpTxt">100%</b></div>'+
-      '</div><div class="m4-weakness" id="m4Weakness">WEAKNESS: <b>SCANNING…</b></div></div>'+
-      '<div class="m4-caption">4 MÄRSCHE PRO SPIELER · 1 MARSCH PRO RALLY · NACH ARMOR BREAK: PASSENDE TRUPPENART EINZELN ANGRIFF</div>'+
-    '</div>';
-  (info||heading).insertAdjacentElement('afterend',box);
-  var stage=box.querySelector('#m4Stage');
-  var svg=box.querySelector('#m4Svg');
-
-  leaderData.forEach(function(d,i){
-    var n=document.createElement('div');
-    n.className='m4-leader';n.id='m4L'+(i+1);n.dataset.sx=d.sx;n.dataset.sy=d.sy;n.dataset.ex=d.ex;n.dataset.ey=d.ey;
-    n.style.left=d.sx+'%';n.style.top=d.sy+'%';
-    n.innerHTML='<div class="pic"><img src="'+d.img+'" alt="'+d.name+'"></div><span class="lbl">L'+(i+1)+' · '+d.name+'</span>';
-    stage.appendChild(n);
-    var r=document.createElement('div');r.className='m4-rally';r.id='m4R'+(i+1);r.style.left=(d.ex-3)+'%';r.style.top=(d.ey-7)+'%';r.textContent='RALLY '+(i+1)+' — READY';stage.appendChild(r);
-  });
-  memberPos.forEach(function(p,i){var m=document.createElement('div');m.className='m4-member';m.id='m4M'+(i+1);m.dataset.x=p[0];m.dataset.y=p[1];m.style.left=p[0]+'%';m.style.top=p[1]+'%';stage.appendChild(m);});
-
-  function mkLine(cls,x1,y1,x2,y2,id){var l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('class',cls);l.setAttribute('x1',x1);l.setAttribute('y1',y1);l.setAttribute('x2',x2);l.setAttribute('y2',y2);if(id)l.id=id;svg.appendChild(l);return l;}
-  // Join lines: each member only to nearby leader positions.
-  memberPos.forEach(function(p,i){var ld=leaderData[i%4];mkLine('m4-joinline',p[0]+1,p[1]+1,ld.ex+3,ld.ey+3,'m4J'+(i+1));});
-  leaderData.forEach(function(d,i){mkLine('m4-attackline',d.ex+3,d.ey+4,56,48,'m4A'+(i+1));});
-  memberPos.forEach(function(p,i){mkLine('m4-individual',p[0]+1,p[1]+1,56,48,'m4I'+(i+1));});
-
-  var title=box.querySelector('#m4Title'),sub=box.querySelector('#m4Sub');
-  var shield=box.querySelector('#m4Shield'),armor=box.querySelector('#m4Armor'),hp=box.querySelector('#m4Hp');
-  var shieldTxt=box.querySelector('#m4ShieldTxt'),armorTxt=box.querySelector('#m4ArmorTxt'),hpTxt=box.querySelector('#m4HpTxt');
-  var shieldRing=box.querySelector('#m4ShieldRing'),armorPlate=box.querySelector('#m4ArmorPlate'),weakBox=box.querySelector('#m4Weakness');
-  var leaders=leaderData.map(function(_,i){return box.querySelector('#m4L'+(i+1));});
-  var rallies=leaderData.map(function(_,i){return box.querySelector('#m4R'+(i+1));});
-  var members=memberPos.map(function(_,i){return box.querySelector('#m4M'+(i+1));});
-  var joinLines=memberPos.map(function(_,i){return box.querySelector('#m4J'+(i+1));});
-  var rallyLines=leaderData.map(function(_,i){return box.querySelector('#m4A'+(i+1));});
-  var indivLines=memberPos.map(function(_,i){return box.querySelector('#m4I'+(i+1));});
-  var weaknessTypes=[{key:'SHOOTER',cls:'shooter',icon:'S'},{key:'ATTACKER',cls:'attacker',icon:'A'},{key:'INFANTRY',cls:'infantry',icon:'I'}];
-  var weaknessRound=0;
-  var timers=[];
-  function later(fn,ms){var t=setTimeout(fn,ms);timers.push(t);return t;}
-  function clearTimers(){timers.forEach(clearTimeout);timers=[];}
-  function setBars(s,a,h){shield.style.width=s+'%';armor.style.width=a+'%';hp.style.width=h+'%';shieldTxt.textContent=Math.max(0,Math.round(s))+'%';armorTxt.textContent=Math.max(0,Math.round(a))+'%';hpTxt.textContent=Math.max(0,Math.round(h))+'%';shieldRing.classList.toggle('broken',s<=0);armorPlate.classList.toggle('broken',a<=0);}
-  function resetVisual(){
-    clearTimers();
-    box.querySelectorAll('.m4-phase').forEach(function(p){p.classList.remove('active');});
-    leaders.forEach(function(n,i){n.classList.remove('on','tele');n.style.left=leaderData[i].sx+'%';n.style.top=leaderData[i].sy+'%';});
-    members.forEach(function(m){m.className='m4-member';m.textContent='';});
-    rallies.forEach(function(r,i){r.className='m4-rally';r.textContent='RALLY '+(i+1)+' — READY';});
-    joinLines.concat(rallyLines).concat(indivLines).forEach(function(l){l.classList.remove('on');});
-    weakBox.classList.remove('on');weakBox.innerHTML='WEAKNESS: <b>SCANNING…</b>';
-    setBars(100,100,100);
-  }
-  function activePhase(p){box.querySelectorAll('.m4-phase').forEach(function(n){n.classList.toggle('active',+n.dataset.p===p);});}
-  function showLeaderSequential(){
-    leaders.forEach(function(n,i){later(function(){n.classList.add('on','tele');n.style.left=leaderData[i].ex+'%';n.style.top=leaderData[i].ey+'%';later(function(){n.classList.remove('tele');},900);},i*420);});
-  }
-  function showMembers(){members.forEach(function(m,i){later(function(){m.classList.add('on');},i*45);});}
-  function startRalliesAndJoin(){
-    rallies.forEach(function(r,i){later(function(){r.classList.add('on');r.textContent='RALLY '+(i+1)+' — START';},i*180);});
-    joinLines.forEach(function(l,i){later(function(){l.classList.add('on');members[i].classList.add('join');},350+i*40);});
-    rallies.forEach(function(r,i){later(function(){r.classList.add('full');r.textContent='RALLY '+(i+1)+' — FULL';},1250+i*160);});
-  }
-  function rallyAttack(){
-    var states=[[50,100],[0,100],[0,50],[0,0]];
-    rallyLines.forEach(function(l,i){later(function(){l.classList.add('on');rallies[i].textContent='RALLY '+(i+1)+' — ATTACK';setBars(states[i][0],states[i][1],100);later(function(){l.classList.remove('on');},650);},i*650);});
-  }
-  function weaknessAttack(){
-    var w=weaknessTypes[weaknessRound%weaknessTypes.length]; weaknessRound++;
-    weakBox.classList.add('on');weakBox.innerHTML='WEAKNESS DETECTED: <b>'+w.key+'</b> — NUTZE '+w.key+'-TRUPPEN';
-    members.forEach(function(m,i){m.className='m4-member on troop '+w.cls;m.textContent=w.icon;});
-    var hpNow=100;
-    indivLines.forEach(function(l,i){later(function(){l.classList.add('on');hpNow=Math.max(0,hpNow-(100/indivLines.length));setBars(0,0,hpNow);later(function(){l.classList.remove('on');},230);},i*145);});
-  }
-
-  var phase=1;
-  function runPhase(p){
-    activePhase(p);
-    if(p===1){resetVisual();activePhase(1);title.textContent='PHASE 1 — LEADER TELEPORTIEREN';sub.textContent='Ein Rally-Leader nach dem anderen teleportiert sich in den engen Cluster links oberhalb von Mortem.';showLeaderSequential();}
-    if(p===2){title.textContent='PHASE 2 — SPIELER NUR NEBEN DEN LEADERN';sub.textContent='Erst jetzt teleportieren die Spieler — ausschließlich direkt um den Rally-Leader-Cluster, nicht weit verteilt.';leaders.forEach(function(n,i){n.classList.add('on');n.style.left=leaderData[i].ex+'%';n.style.top=leaderData[i].ey+'%';});showMembers();}
-    if(p===3){title.textContent='PHASE 3 — RALLY STARTEN UND ALLE 4 JOINEN';sub.textContent='Die 4 Leader starten ihre Rallys. Jeder Spieler nutzt 4 Märsche und joint jede Rally genau einmal.';members.forEach(function(m){m.classList.add('on');});startRalliesAndJoin();}
-    if(p===4){title.textContent='PHASE 4 — 4 RALLYS BRECHEN SCHILD UND RÜSTUNG';sub.textContent='Die vier Rallys schlagen nacheinander auf Mortem ein: zuerst fällt der Schild, danach die Rüstung. HP bleibt bis zum Armor Break unangetastet.';rallies.forEach(function(r,i){r.classList.add('on','full');r.textContent='RALLY '+(i+1)+' — FULL';});rallyAttack();}
-    if(p===5){title.textContent='PHASE 5 — SCHWÄCHE AUSNUTZEN';sub.textContent='Sobald die Rüstung weg ist, greifen die Spieler einzeln an. Die Truppenart passt sich an Mortems aktuelle Schwäche an: Shooter, Attacker oder Infantry.';setBars(0,0,100);weaknessAttack();}
-  }
-  runPhase(1);
-  if(window.__mortemV4Loop) clearInterval(window.__mortemV4Loop);
-  window.__mortemV4Loop=setInterval(function(){phase=phase===5?1:phase+1;runPhase(phase);},4200);
+  const page=document.getElementById('mortem'); if(!page)return;
+  const tabs=document.querySelector('.top-tabs');
+  if(tabs){const t=[...tabs.querySelectorAll('.top-tab-btn')].find(b=>(b.getAttribute('onclick')||'').includes("'mortem'"));if(t){t.textContent='🧟 MORTEM DEFENSE';tabs.insertBefore(t,tabs.firstElementChild);}}
+  if(!document.getElementById('mortem-en-style'))document.head.insertAdjacentHTML('beforeend',`<style id="mortem-en-style">
+  .me{max-width:1180px;margin:auto;padding:20px;color:#ccc}.me h2,.me h3{font-family:"Bebas Neue",sans-serif;color:#fff;letter-spacing:2px;margin:0}.me h2{font-size:44px}.me-sub{font:11px "Share Tech Mono",monospace;color:#82909a;letter-spacing:2px;margin:4px 0 15px}.me-note{padding:12px 14px;border-radius:10px;border:1px solid #4c4330;background:#17140c;margin:10px 0;line-height:1.45}.me-note b{color:#fff}.me-note.blue{border-color:#254c66;background:#0d151a}.me-note.red{border:2px solid #ad5b22;background:#241509;color:#ffd9a3}.me-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0 16px}.me-step{padding:10px;border:1px solid #292929;border-radius:9px;background:#121212}.me-step small{display:block;color:#777;font:9px "Share Tech Mono",monospace}.me-step b{color:#fff;font-size:13px}.me-card{background:#0d0d0d;border:1px solid #292929;border-radius:14px;padding:14px;box-shadow:0 14px 34px #0008}.me-phases{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:12px 0}.me-p{padding:7px;border:1px solid #292929;border-radius:8px;background:#141414;min-height:44px}.me-p small{display:block;color:#666;font:8px "Share Tech Mono",monospace}.me-p b{font-size:10px;color:#aaa}.me-p.on{background:#102535;border-color:#3376a2;box-shadow:0 0 18px #256b9b33}.me-p.on b{color:#fff}.me-status{padding:10px 12px;border:1px solid #2b2b2b;border-radius:9px;background:#131313;margin-bottom:10px}.me-status strong{display:block;color:#fff;font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:1.5px}.me-status span{font-size:12px;color:#aaa}.me-stage{position:relative;height:590px;overflow:hidden;border-radius:12px;border:1px solid #272727;background:radial-gradient(circle at 70% 45%,#4a090955,transparent 23%),radial-gradient(circle at 25% 27%,#16456644,transparent 24%),linear-gradient(#171717,#090909)}.me-cluster{position:absolute;left:5%;top:14%;width:45%;height:48%;border:1px dashed #4382a866;border-radius:24px;box-shadow:inset 0 0 35px #1e6b9b14}.me-cluster:before{content:"ALL MEMBERS STAY DIRECTLY BESIDE THE 4 RALLY LEADERS";position:absolute;top:-11px;left:12px;padding:3px 7px;border-radius:99px;background:#0b1115;border:1px solid #28597a;color:#a9dcff;font:9px "Share Tech Mono",monospace}.me-bossbox{position:absolute;left:71%;top:43%;transform:translate(-50%,-50%);width:220px;text-align:center;z-index:5}.me-boss{position:relative;width:185px;height:185px;border-radius:50%;margin:auto;border:3px solid #87372d;box-shadow:0 0 34px #b52b2355}.me-boss img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center}.me-shield{position:absolute;inset:-10px;border:4px solid #62b8ff;border-radius:50%;box-shadow:0 0 24px #58b6ff88;transition:.4s}.me-shield.off{opacity:0;transform:scale(1.15)}.me-armor{position:absolute;inset:8px;border:5px double #ddd;border-radius:50%;transition:.4s}.me-armor.off{opacity:0;transform:scale(.85)}.me-bars{margin-top:12px;padding:8px;border:1px solid #292929;border-radius:9px;background:#080808aa}.me-bar{display:grid;grid-template-columns:48px 1fr 30px;gap:6px;align-items:center;margin:5px 0;font:9px "Share Tech Mono",monospace}.me-track{height:8px;background:#222;border-radius:99px;overflow:hidden}.me-fill{height:100%;width:100%;transition:width .55s}.me-fill.s{background:#52b4ff}.me-fill.a{background:#cbd1d5}.me-fill.h{background:#e54c3c}.me-weak{margin-top:7px;padding:7px;border:1px solid #9b6a22;border-radius:8px;background:#2a1d0b;color:#ffd38b;font:10px "Share Tech Mono",monospace;opacity:0}.me-weak.on{opacity:1}.me-leader{position:absolute;width:66px;height:66px;opacity:0;transform:scale(.4);z-index:4;transition:.35s}.me-leader.on{opacity:1;transform:scale(1)}.me-leader.flash{animation:metele .85s}.me-leader img{width:100%;height:100%;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px #4da6df77,0 0 20px #3696d844}.me-leader label{position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);background:#0b1115;border:1px solid #28597a;border-radius:99px;padding:2px 5px;color:#d9f1ff;font:9px "Share Tech Mono",monospace;white-space:nowrap}.me-member{position:absolute;width:20px;height:20px;border-radius:50%;background:#2abf6b;opacity:0;transform:scale(.3);transition:.3s;z-index:4}.me-member.on{opacity:1;transform:scale(1)}.me-member.join{box-shadow:0 0 16px #38e282}.me-member.troop{width:29px;height:29px;border-radius:7px;color:white;display:flex;align-items:center;justify-content:center;font:bold 9px "Share Tech Mono",monospace}.me-member.shooter{background:#7949b5}.me-member.attacker{background:#b64235}.me-member.infantry{background:#3478ad}.me-rally{position:absolute;opacity:0;padding:3px 6px;border-radius:99px;border:1px solid #3d82ad;background:#102536;color:#d9f2ff;font:8px "Share Tech Mono",monospace;z-index:6}.me-rally.on{opacity:1}.me-rally.full{border-color:#3aa56c;background:#102a1d}.me-svg{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}.me-svg line{opacity:0;stroke-linecap:round}.me-svg line.on{opacity:1;animation:mebeam .65s infinite}.join{stroke:#45dd88;stroke-width:.45}.rattack{stroke:#6cc4ff;stroke-width:.7;filter:drop-shadow(0 0 2px #6cc4ff)}.single{stroke:#ffd15a;stroke-width:.5;filter:drop-shadow(0 0 2px #ffd15a)}.me-switch{position:absolute;right:2%;bottom:14px;width:45%;z-index:8;padding:10px 12px;border-radius:10px;border:3px solid #e4922d;background:#261508ee;color:#ffdca7;opacity:0;transform:translateY(10px);transition:.3s}.me-switch.on{opacity:1;transform:none}.me-switch strong{display:block;color:#fff;font-family:"Bebas Neue",sans-serif;font-size:24px;letter-spacing:1.5px}.me-switch b{color:#fff}.me-caption{position:absolute;left:24%;bottom:12px;transform:translateX(-50%);font:9px "Share Tech Mono",monospace;background:#000b;border:1px solid #2d2d2d;border-radius:8px;padding:6px 9px;z-index:8}@keyframes metele{0%{filter:brightness(2) blur(2px);transform:scale(.4)}50%{filter:brightness(1.5);transform:scale(1.15)}100%{filter:none;transform:scale(1)}}@keyframes mebeam{50%{filter:brightness(1.8)}}@media(max-width:850px){.me-grid{grid-template-columns:1fr 1fr}.me-phases{grid-template-columns:1fr 1fr}.me-stage{height:700px}.me-bossbox{left:73%;transform:translate(-50%,-50%) scale(.86)}.me-cluster{width:49%;left:3%}.me-switch{width:53%}}
+  </style>`);
+  page.innerHTML=`<div class="me"><h2>MORTEM DEFENSE — ALLIANCE STRATEGY</h2><div class="me-sub">// ALL IN ENGLISH · 4 RALLIES FIRST · SINGLE MARCHES AFTER ARMOR BREAK //</div>
+  <div class="me-note red"><b>IMPORTANT SWITCH:</b> Use rallies to destroy Mortem's SHIELD and ARMOR. <b>WHEN ARMOR = 0, STOP RALLIES.</b> From that moment, every player sends <b>SINGLE MARCHES</b> and uses the troop type shown as Mortem's weakness.</div>
+  <div class="me-grid"><div class="me-step"><small>1</small><b>ElMeastro → Tweak → Yumi → Geatan teleport first</b></div><div class="me-step"><small>2</small><b>Members teleport directly beside the leaders</b></div><div class="me-step"><small>3</small><b>Start + fill all 4 rallies</b></div><div class="me-step"><small>4</small><b>Break Armor → SINGLE MARCHES only</b></div></div>
+  <div class="me-note blue"><b>Positioning:</b> All players stay tightly around ElMeastro, Tweak, Yumi and Geatan. Nobody should be standing away from the Rally Leader cluster.</div>
+  <div class="me-card"><h3>LIVE BATTLE SEQUENCE</h3><div class="me-phases">${['Leaders one by one','Members beside leaders','Start 4 rallies','Join all 4','Break Shield + Armor','SINGLE MARCHES'].map((x,i)=>`<div class="me-p" data-p="${i+1}"><small>PHASE ${i+1}</small><b>${x}</b></div>`).join('')}</div><div class="me-status"><strong id="mesTitle"></strong><span id="mesText"></span></div><div class="me-stage" id="meStage"><div class="me-cluster"></div><div class="me-bossbox"><div class="me-boss"><img src="assets/mortem.webp?v=20260823-1024"><div class="me-shield" id="meShieldRing"></div><div class="me-armor" id="meArmorRing"></div></div><div class="me-bars"><div class="me-bar">SHIELD<div class="me-track"><div class="me-fill s" id="meShield"></div></div><b id="meShieldN">100</b></div><div class="me-bar">ARMOR<div class="me-track"><div class="me-fill a" id="meArmor"></div></div><b id="meArmorN">100</b></div><div class="me-bar">HP<div class="me-track"><div class="me-fill h" id="meHp"></div></div><b id="meHpN">100</b></div></div><div class="me-weak" id="meWeak">WEAKNESS: <b id="meWeakN">SHOOTER</b></div></div><div class="me-switch" id="meSwitch"><strong>ARMOR = 0 → STOP RALLIES</strong><span><b>NOW USE SINGLE MARCHES.</b><br>Each player attacks Mortem individually with the troop type matching the weakness: SHOOTER / ATTACKER / INFANTRY.</span></div><svg class="me-svg" viewBox="0 0 100 100" preserveAspectRatio="none">${'<line class="join" data-k="j" x1="18" y1="24" x2="29" y2="26"/><line class="join" data-k="j" x1="15" y1="37" x2="29" y2="26"/><line class="join" data-k="j" x1="40" y1="38" x2="34" y2="27"/><line class="join" data-k="j" x1="45" y1="21" x2="34" y2="27"/>'}<line class="rattack" data-k="r" x1="28" y1="23" x2="65" y2="43"/><line class="rattack" data-k="r" x1="36" y1="21" x2="65" y2="43"/><line class="rattack" data-k="r" x1="27" y1="34" x2="65" y2="43"/><line class="rattack" data-k="r" x1="37" y1="33" x2="65" y2="43"/><line class="single" data-k="s" x1="16" y1="19" x2="65" y2="43"/><line class="single" data-k="s" x1="18" y1="42" x2="65" y2="43"/><line class="single" data-k="s" x1="41" y1="16" x2="65" y2="43"/><line class="single" data-k="s" x1="44" y1="39" x2="65" y2="43"/></svg><div class="me-caption">MEMBERS STAY NEXT TO THE RALLY LEADERS</div></div></div>
+  <div class="me-note red"><b>After Armor breaks:</b> SHOOTER weakness → use Shooter troops · ATTACKER weakness → use Attacker troops · INFANTRY weakness → use Infantry troops. <b>These are individual marches, not rallies.</b></div></div>`;
+  const stage=document.getElementById('meStage');
+  const leaders=[['ELMEASTRO','assets/heroes/s4-sherry.jpg',25,20],['TWEAK','assets/heroes/s4-jake.jpg',35,18],['YUMI','assets/heroes/s4-piers.jpg',24,33],['GEATAN','assets/heroes/s5-excella.jpg',36,31]];
+  leaders.forEach((d,i)=>{let e=document.createElement('div');e.className='me-leader';e.style.left=d[2]+'%';e.style.top=d[3]+'%';e.innerHTML=`<img src="${d[1]}"><label>${d[0]}</label>`;stage.appendChild(e);let r=document.createElement('div');r.className='me-rally';r.style.left=(d[2]-1)+'%';r.style.top=(d[3]-7)+'%';r.textContent='RALLY '+(i+1);stage.appendChild(r)});
+  [[12,19],[16,16],[20,14],[29,13],[39,15],[44,19],[10,27],[14,31],[18,35],[22,39],[30,40],[38,39],[44,35],[46,28],[18,24],[21,28],[29,27],[40,25],[32,35],[13,40],[35,13],[9,34],[42,42],[27,43]].forEach(p=>{let m=document.createElement('div');m.className='me-member';m.style.left=p[0]+'%';m.style.top=p[1]+'%';stage.appendChild(m)});
+  const L=[...document.querySelectorAll('.me-leader')],M=[...document.querySelectorAll('.me-member')],R=[...document.querySelectorAll('.me-rally')],J=[...document.querySelectorAll('[data-k=j]')],RA=[...document.querySelectorAll('[data-k=r]')],S=[...document.querySelectorAll('[data-k=s]')];
+  const text=[['RALLY LEADERS TELEPORT FIRST','ElMeastro appears first, then Tweak, then Yumi, then Geatan.'],['MEMBERS TELEPORT NEXT','All members appear only beside the Rally Leader cluster.'],['START 4 RALLIES','All four leaders start their rallies close together.'],['JOIN ALL 4 RALLIES','Every player uses 4 marches: one march into each rally.'],['RALLIES BREAK SHIELD + ARMOR','The rallies hit Mortem until Shield and Armor reach 0.'],['ARMOR = 0 → SINGLE MARCHES','STOP RALLIES. Every player now attacks individually with the troop type matching Mortem\'s weakness.']];
+  const weak=[['SHOOTER','shooter','S'],['ATTACKER','attacker','A'],['INFANTRY','infantry','I']];let wi=0,step=1;
+  function bar(id,v){document.getElementById('me'+id).style.width=v+'%';document.getElementById('me'+id+'N').textContent=v}
+  function reset(){L.forEach(x=>x.classList.remove('on','flash'));M.forEach(x=>{x.className='me-member';x.textContent=''});R.forEach((x,i)=>{x.className='me-rally';x.textContent='RALLY '+(i+1)});[...J,...RA,...S].forEach(x=>x.classList.remove('on'));document.getElementById('meSwitch').classList.remove('on');document.getElementById('meWeak').classList.remove('on');document.getElementById('meShieldRing').classList.remove('off');document.getElementById('meArmorRing').classList.remove('off');bar('Shield',100);bar('Armor',100);bar('Hp',100)}
+  function phase(s){document.querySelectorAll('.me-p').forEach(x=>x.classList.toggle('on',+x.dataset.p===s));document.getElementById('mesTitle').textContent=text[s-1][0];document.getElementById('mesText').textContent=text[s-1][1];if(s===1){reset();L.forEach((x,i)=>setTimeout(()=>{x.classList.add('on','flash');setTimeout(()=>x.classList.remove('flash'),850)},i*400));return}L.forEach(x=>x.classList.add('on'));if(s>=2)M.forEach((x,i)=>setTimeout(()=>x.classList.add('on'),i*20));if(s===3)R.forEach((x,i)=>setTimeout(()=>{x.classList.add('on');x.textContent='RALLY '+(i+1)+' — STARTED'},i*120));if(s===4){R.forEach((x,i)=>{x.classList.add('on','full');x.textContent='RALLY '+(i+1)+' — FULL'});M.forEach(x=>x.classList.add('join'));J.forEach((x,i)=>setTimeout(()=>x.classList.add('on'),i*100))}if(s===5){R.forEach((x,i)=>{x.classList.add('on','full');x.textContent='RALLY '+(i+1)+' — ATTACK'});RA.forEach((x,i)=>setTimeout(()=>x.classList.add('on'),i*100));setTimeout(()=>{bar('Shield',0);document.getElementById('meShieldRing').classList.add('off')},600);setTimeout(()=>{bar('Armor',0);document.getElementById('meArmorRing').classList.add('off')},1500)}if(s===6){bar('Shield',0);bar('Armor',0);document.getElementById('meShieldRing').classList.add('off');document.getElementById('meArmorRing').classList.add('off');R.forEach(x=>x.classList.remove('on','full'));document.getElementById('meSwitch').classList.add('on');let w=weak[wi];document.getElementById('meWeakN').textContent=w[0];document.getElementById('meWeak').classList.add('on');M.forEach((x,i)=>{x.classList.add('troop',w[1]);x.textContent=w[2];setTimeout(()=>{let l=S[i%S.length];l.classList.add('on');setTimeout(()=>l.classList.remove('on'),350)},i*120)});setTimeout(()=>bar('Hp',60),900);setTimeout(()=>bar('Hp',25),1900)}}
+  phase(1);if(window.__mortemEN)clearInterval(window.__mortemEN);window.__mortemEN=setInterval(()=>{step=step===6?1:step+1;if(step===1)wi=(wi+1)%3;phase(step)},3000);
 })();
