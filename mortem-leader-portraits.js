@@ -1,9 +1,9 @@
 (function(){
-  var spriteUrl='assets/mortem/leader-sprite.jpg?v=20260823-1905';
-  var source=spriteUrl;
+  var source=null;
   var positions={YUMI:'0% 50%',TWEAK:'33.333% 50%',ELMEASTRO:'66.666% 50%',GEATAN:'100% 50%'};
 
   function applyPortraits(){
+    if(!source)return;
     document.querySelectorAll('.me-leader').forEach(function(leader){
       var label=leader.querySelector('label');
       if(!label)return;
@@ -16,8 +16,8 @@
       var img=leader.querySelector(':scope > img') || leader.querySelector('img');
       if(!img)return;
 
+      img.removeAttribute('alt');
       if(img.getAttribute('src')!==source)img.setAttribute('src',source);
-      img.setAttribute('alt',name+' profile');
       Object.assign(img.style,{
         position:'absolute',
         inset:'0',
@@ -30,7 +30,7 @@
         objectFit:'cover',
         objectPosition:positions[name],
         borderRadius:'50%',
-        background:'transparent',
+        background:'#111',
         zIndex:'2',
         boxShadow:'0 0 0 2px rgba(77,166,223,.70),0 0 22px rgba(54,150,216,.44),0 10px 22px rgba(0,0,0,.45)'
       });
@@ -53,20 +53,21 @@
     tabs.insertBefore(mortemTab,tabs.firstElementChild);
   }
 
-  function boot(){applyPortraits();selectMortem();}
-  boot();
-  [100,300,700,1500,3000].forEach(function(ms){setTimeout(applyPortraits,ms);});
-
-  fetch('assets/mortem/leader-sprite.b64?v=20260823-1905',{cache:'no-store'})
-    .then(function(r){return r.ok?r.text():Promise.reject();})
-    .then(function(b64){
-      b64=(b64||'').trim();
-      if(b64.length>1000){
+  function loadPortraits(){
+    fetch('assets/mortem/leader-sprite.b64?v=20260823-1911',{cache:'no-store'})
+      .then(function(r){if(!r.ok)throw new Error('portrait data');return r.text();})
+      .then(function(b64){
+        b64=(b64||'').trim();
+        if(b64.length<10000 || b64.indexOf('/9j/')!==0)throw new Error('invalid portrait data');
         source='data:image/jpeg;base64,'+b64;
         applyPortraits();
-      }
-    })
-    .catch(function(){});
+        [100,300,700,1500,3000].forEach(function(ms){setTimeout(applyPortraits,ms);});
+      })
+      .catch(function(){/* keep original hero images instead of broken alt text */});
+  }
+
+  selectMortem();
+  loadPortraits();
 
   var observer=new MutationObserver(function(){applyPortraits();});
   observer.observe(document.documentElement,{childList:true,subtree:true});
