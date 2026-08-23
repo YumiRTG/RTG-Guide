@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Mortem two-headed mutant boss">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="46%" r="70%">
+      <stop offset="0" stop-color="#263b2c"/>
+      <stop offset="0.45" stop-color="#101713"/>
+      <stop offset="1" stop-color="#050706"/>
+    </radialGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8ea28e"/>
+      <stop offset="0.55" stop-color="#536b59"/>
+      <stop offset="1" stop-color="#2b3d30"/>
+    </linearGradient>
+    <linearGradient id="armor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4d5e53"/>
+      <stop offset="1" stop-color="#1b2720"/>
+    </linearGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="9" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".75"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bg)"/>
+  <circle cx="400" cy="395" r="315" fill="none" stroke="#6fe78b" stroke-opacity=".08" stroke-width="3"/>
+  <circle cx="400" cy="395" r="270" fill="none" stroke="#6fe78b" stroke-opacity=".06" stroke-width="2" stroke-dasharray="12 18"/>
+
+  <g opacity=".42" filter="url(#glow)" fill="#57d978">
+    <circle cx="120" cy="200" r="18"/><circle cx="690" cy="170" r="11"/><circle cx="105" cy="615" r="14"/>
+    <circle cx="680" cy="600" r="19"/><circle cx="610" cy="105" r="8"/><circle cx="210" cy="120" r="9"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <!-- broad torso -->
+    <path d="M185 690 C205 585 252 515 310 482 C342 464 364 455 400 455 C436 455 458 464 490 482 C548 515 595 585 615 690 L185 690Z" fill="url(#armor)" stroke="#779382" stroke-opacity=".55" stroke-width="8"/>
+    <path d="M265 700 C285 615 320 555 400 528 C480 555 515 615 535 700Z" fill="#223129" opacity=".92"/>
+
+    <!-- necks -->
+    <path d="M304 470 C302 420 314 382 339 350 L382 374 L368 493Z" fill="url(#skin)"/>
+    <path d="M496 470 C498 420 486 382 461 350 L418 374 L432 493Z" fill="url(#skin)"/>
+
+    <!-- left head -->
+    <g transform="translate(-5 4)">
+      <path d="M219 324 C207 236 249 164 321 143 C385 124 430 166 432 232 C434 310 386 373 320 385 C269 394 226 368 219 324Z" fill="url(#skin)" stroke="#91ad99" stroke-opacity=".55" stroke-width="7"/>
+      <path d="M238 214 C268 175 320 159 361 177" fill="none" stroke="#b7c8bb" stroke-opacity=".35" stroke-width="16" stroke-linecap="round"/>
+      <ellipse cx="288" cy="252" rx="24" ry="19" fill="#101813"/>
+      <ellipse cx="292" cy="251" rx="9" ry="8" fill="#9cff7e" filter="url(#glow)"/>
+      <ellipse cx="365" cy="248" rx="24" ry="19" fill="#101813"/>
+      <ellipse cx="362" cy="247" rx="9" ry="8" fill="#9cff7e" filter="url(#glow)"/>
+      <path d="M275 318 Q325 353 376 313 Q358 366 324 367 Q289 363 275 318Z" fill="#111512" stroke="#6b826f" stroke-width="5"/>
+      <g fill="#dce7da">
+        <path d="M291 324 l12 27 l12 -24Z"/><path d="M316 331 l11 30 l12 -30Z"/><path d="M342 329 l10 27 l12 -31Z"/>
+      </g>
+    </g>
+
+    <!-- right head -->
+    <g transform="translate(7 -2)">
+      <path d="M581 324 C593 236 551 164 479 143 C415 124 370 166 368 232 C366 310 414 373 480 385 C531 394 574 368 581 324Z" fill="url(#skin)" stroke="#91ad99" stroke-opacity=".55" stroke-width="7"/>
+      <path d="M562 214 C532 175 480 159 439 177" fill="none" stroke="#b7c8bb" stroke-opacity=".35" stroke-width="16" stroke-linecap="round"/>
+      <ellipse cx="512" cy="252" rx="24" ry="19" fill="#101813"/>
+      <ellipse cx="508" cy="251" rx="9" ry="8" fill="#9cff7e" filter="url(#glow)"/>
+      <ellipse cx="435" cy="248" rx="24" ry="19" fill="#101813"/>
+      <ellipse cx="438" cy="247" rx="9" ry="8" fill="#9cff7e" filter="url(#glow)"/>
+      <path d="M525 318 Q475 353 424 313 Q442 366 476 367 Q511 363 525 318Z" fill="#111512" stroke="#6b826f" stroke-width="5"/>
+      <g fill="#dce7da">
+        <path d="M509 324 l-12 27 l-12 -24Z"/><path d="M484 331 l-11 30 l-12 -30Z"/><path d="M458 329 l-10 27 l-12 -31Z"/>
+      </g>
+    </g>
+
+    <!-- central mutation crest -->
+    <path d="M400 115 L427 170 L400 203 L373 170Z" fill="#6da67a" stroke="#a0c7a8" stroke-opacity=".45" stroke-width="5"/>
+    <path d="M388 198 C394 180 406 180 412 198 L430 455 C420 471 380 471 370 455Z" fill="#33493a" opacity=".9"/>
+
+    <!-- shoulders / claws -->
+    <path d="M220 530 C155 550 108 600 91 668 C129 642 167 634 218 644Z" fill="#314638" stroke="#6a8874" stroke-width="7"/>
+    <path d="M580 530 C645 550 692 600 709 668 C671 642 633 634 582 644Z" fill="#314638" stroke="#6a8874" stroke-width="7"/>
+  </g>
+
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="400" y="742" fill="#d9eadc" font-size="46" font-weight="800" letter-spacing="8">MORTEM</text>
+    <text x="400" y="774" fill="#7fcf92" font-size="17" font-weight="700" letter-spacing="5">BIOHAZARD MUTANT</text>
+  </g>
+</svg>
