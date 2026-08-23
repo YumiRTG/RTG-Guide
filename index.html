@@ -16,7 +16,7 @@ html,body{margin:0;min-height:100%;background:#0a0a0a;color:#d4d4d4;font-family:
     var response=await fetch('legacy.html?v=20260823',{cache:'no-store'});
     if(!response.ok)throw new Error('Base guide could not be loaded');
     var html=await response.text();
-    var injected='<script src="patch.js?v=20260823-1237"><\/script><script src="arena-hotfix.js?v=20260823-1237"><\/script><script src="mortem-event.js?v=20260823-0940"><\/script><script src="mortem-animation-v2.js?v=20260823-1024"><\/script><script src="mortem-leader-portraits.js?v=20260823-1256"><\/script><script src="mortem-boss-art.js?v=20260823-1417"><\/script>';
+    var injected='<script src="patch.js?v=20260823-1237"><\/script><script src="arena-hotfix.js?v=20260823-1237"><\/script><script src="mortem-event.js?v=20260823-0940"><\/script><script src="mortem-animation-v2.js?v=20260823-1024"><\/script><script src="mortem-leader-portraits.js?v=20260823-1256"><\/script><script src="mortem-boss-art.js?v=20260823-1417"><\/script><script src="herb-event.js?v=20260823-1426"><\/script>';
     html=html.replace('</body>',injected+'</body>');
     document.open();
     document.write(html);
