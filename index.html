@@ -43,6 +43,18 @@ html,body{margin:0;min-height:100%;background:#0a0a0a;color:#d4d4d4;font-family:
       '<div class="char-tagline">' + tagline + '</div>' +
       '</div></div>';
   }
+  function moveHero(name,targetTier){
+    var target = tierRow(targetTier);
+    if(!target) return;
+    var cards = document.querySelectorAll('#heroes-tierlist .char-card');
+    for(var i=0;i<cards.length;i++){
+      var n = cards[i].querySelector('.char-name');
+      if(n && n.textContent.trim().toUpperCase().indexOf(name.toUpperCase()) === 0){
+        target.querySelector('.tier-cards').appendChild(cards[i]);
+        return;
+      }
+    }
+  }
 
   var headerSeason = document.querySelector('header p');
   if(headerSeason && headerSeason.textContent.indexOf('FULL STRATEGY COMMAND CENTER') !== -1){
@@ -82,6 +94,9 @@ html,body{margin:0;min-height:100%;background:#0a0a0a;color:#d4d4d4;font-family:
         card('assets/heroes/s4-piers.jpg','PIERS NIVANS','S4','s4',370,'A-tier Season 4 hero.');
       a.querySelector('.tier-cards').insertAdjacentHTML('afterbegin', aCards);
     }
+
+    moveHero('CARLOS','A');
+    moveHero('BILLY','B');
   }
 
   var comparison = document.getElementById('heroes-comparison');
