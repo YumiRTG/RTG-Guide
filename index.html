@@ -16,7 +16,7 @@ html,body{margin:0;min-height:100%;background:#0a0a0a;color:#d4d4d4;font-family:
     var response=await fetch('legacy.html?v=20260823',{cache:'no-store'});
     if(!response.ok)throw new Error('Base guide could not be loaded');
     var html=await response.text();
-    var injected='<script src="patch.js?v=20260823-0900"><\/script>';
+    var injected='<script src="patch.js?v=20260823-0900"><\/script><script src="arena-hotfix.js?v=20260823-0908"><\/script>';
     html=html.replace('</body>',injected+'</body>');
     document.open();
     document.write(html);
