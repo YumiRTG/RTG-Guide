@@ -28,7 +28,7 @@
       var sub=best.querySelector('.section-sub');
       if(sub)sub.textContent='// CURRENT BEST ARENA TEAM //';
       var callout=best.querySelector('.callout.gold');
-      if(callout)callout.innerHTML='<strong>Current best Arena setup:</strong> Front: <strong>Jake + Sheva</strong>. Back: <strong>Piers + Ashley + Excella</strong>.';
+      if(callout)callout.innerHTML='<strong>Current best Arena setup:</strong> Front: <strong>Jake + Sheva</strong>. Back: <strong>Piers + BSAA Chris + Excella</strong>.';
     }
 
     var lineup=document.getElementById('arena-lineup');
@@ -36,7 +36,7 @@
       var lineupSub=lineup.querySelector('.section-sub');
       if(lineupSub)lineupSub.textContent='// 2 FRONT · 3 BACK //';
       var lineupCallout=lineup.querySelector('.callout.blue');
-      if(lineupCallout)lineupCallout.innerHTML='<strong>Best formation:</strong> Jake + Sheva in front. Piers + Ashley + Excella in back.';
+      if(lineupCallout)lineupCallout.innerHTML='<strong>Best formation:</strong> Jake + Sheva in front. Piers + BSAA Chris + Excella in back.';
     }
   }
 
