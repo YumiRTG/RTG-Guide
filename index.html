@@ -9,152 +9,20 @@ html,body{margin:0;min-height:100%;background:#0a0a0a;color:#d4d4d4;font-family:
 </style>
 </head>
 <body>
-<div class="loading"><strong>☣ LOADING RTG INTEL ☣</strong><small>Updating hero database…</small></div>
+<div class="loading"><strong>☣ LOADING RTG INTEL ☣</strong><small>Loading guide…</small></div>
 <script>
 (async function(){
   try{
-    var response = await fetch('legacy.html?v=20260823', {cache:'no-store'});
-    if(!response.ok) throw new Error('Base guide could not be loaded');
-    var html = await response.text();
-    var patch = `
-<style>
-.s4{background:rgba(155,89,182,.2)!important;color:#c39bd3!important;border:1px solid rgba(155,89,182,.35)!important;}
-.s5{background:rgba(236,64,122,.2)!important;color:#ff80ab!important;border:1px solid rgba(236,64,122,.35)!important;}
-.badge.sss{background:rgba(236,64,122,.28);color:#ff80ab;}
-.tier-label.sss{background:rgba(236,64,122,.18);color:#ff80ab;border-right:3px solid #ff4081;}
-</style>
-<script>
-(function(){
-  function tierRow(label){
-    var rows = document.querySelectorAll('#heroes-tierlist .tier-row');
-    for(var i=0;i<rows.length;i++){
-      var tier = rows[i].querySelector('.tier-label');
-      if(tier && tier.textContent.trim() === label) return rows[i];
-    }
-    return null;
-  }
-  function card(img,name,season,seasonClass,stat,tagline){
-    return '<div class="char-card">' +
-      '<img class="char-card-img" src="' + img + '" alt="' + name + '">' +
-      '<div class="char-card-body">' +
-      '<div class="char-name">' + name + ' <span class="season-badge ' + seasonClass + '">' + season + '</span></div>' +
-      '<div class="char-role">' + (season === 'S5' ? 'SEASON 5' : 'SEASON 4') + ' · NEW HERO</div>' +
-      '<div class="char-stat">' + stat + '% MAX STATS</div>' +
-      '<div class="char-tagline">' + tagline + '</div>' +
-      '</div></div>';
-  }
-  function moveHero(name,targetTier){
-    var target = tierRow(targetTier);
-    if(!target) return;
-    var cards = document.querySelectorAll('#heroes-tierlist .char-card');
-    for(var i=0;i<cards.length;i++){
-      var n = cards[i].querySelector('.char-name');
-      if(n && n.textContent.trim().toUpperCase().indexOf(name.toUpperCase()) === 0){
-        target.querySelector('.tier-cards').appendChild(cards[i]);
-        return;
-      }
-    }
-  }
-
-  var headerSeason = document.querySelector('header p');
-  if(headerSeason && headerSeason.textContent.indexOf('FULL STRATEGY COMMAND CENTER') !== -1){
-    headerSeason.textContent = 'FULL STRATEGY COMMAND CENTER — S1 · S2 · S3 · S4 · S5';
-  }
-  var updated = document.querySelector('header .header-sub');
-  if(updated) updated.textContent = '// UPDATED AUGUST 2026 //';
-
-  var tierPage = document.getElementById('heroes-tierlist');
-  if(tierPage){
-    var sub = tierPage.querySelector('.section-sub');
-    if(sub) sub.textContent = '// ALL SEASONS · S1 · S2 · S3 · S4 · S5 //';
-    var callout = tierPage.querySelector('.callout.gold');
-    if(callout) callout.innerHTML = '<strong>Stat ceilings:</strong> S5 = 444% · S4 = 370% · S3 = 290% · S1 Leon = 260% · All S2 = 240% · Other S1 = 200%. Skills &amp; weapon synergy matter as much as raw stats.';
-
-    var ss = tierRow('SS');
-    if(ss){
-      var sssHtml = '<div class="tier-row">' +
-        '<div class="tier-label sss">SSS</div>' +
-        '<div class="tier-cards">' +
-        card('assets/heroes/s5-excella.jpg','EXCELLA GIONNE','S5','s5',444,'Season 5 powerhouse — SSS tier.') +
-        '</div></div>';
-      ss.insertAdjacentHTML('beforebegin', sssHtml);
-    }
-
-    var s = tierRow('S');
-    if(s){
-      var sCards = card('assets/heroes/s5-sheva.jpg','SHEVA ALOMAR','S5','s5',444,'SS-tier Season 5 hero.') +
-        card('assets/heroes/s5-chris.jpg','BSAA CHRIS','S5','s5',444,'SS-tier Season 5 hero.') +
-        card('assets/heroes/s4-jake.jpg','JAKE MULLER','S4','s4',370,'S-tier Season 4 hero.');
-      s.querySelector('.tier-cards').insertAdjacentHTML('afterbegin', sCards);
-    }
-
-    var a = tierRow('A');
-    if(a){
-      var aCards = card('assets/heroes/s4-sherry.jpg','SHERRY BIRKIN','S4','s4',370,'A-tier Season 4 hero.') +
-        card('assets/heroes/s4-piers.jpg','PIERS NIVANS','S4','s4',370,'A-tier Season 4 hero.');
-      a.querySelector('.tier-cards').insertAdjacentHTML('afterbegin', aCards);
-    }
-
-    moveHero('SHEVA ALOMAR','SS');
-    moveHero('BSAA CHRIS','SS');
-    moveHero('CARLOS','A');
-    moveHero('BILLY','B');
-  }
-
-  var comparison = document.getElementById('heroes-comparison');
-  if(comparison){
-    var compSub = comparison.querySelector('.section-sub');
-    if(compSub) compSub.textContent = '// S1 vs S2 vs S3 vs S4 vs S5 HEAD-TO-HEAD //';
-
-    function statRow(name){
-      var names = comparison.querySelectorAll('.stat-ov-name');
-      for(var i=0;i<names.length;i++){
-        if(names[i].textContent.trim() === name) return names[i].closest('.stat-overview-row');
-      }
-      return null;
-    }
-    function setWidth(name,width){
-      var row = statRow(name);
-      if(row){
-        var bar = row.querySelector('.stat-bar-fill');
-        if(bar) bar.style.width = width + '%';
-      }
-    }
-    setWidth('LEON',59);
-    setWidth('S1 OTHER',45);
-    setWidth('ALL S2',54);
-    setWidth('ALL S3',65);
-
-    var s3 = statRow('ALL S3');
-    if(s3){
-      var rowsHtml = '<div class="stat-overview-row">' +
-        '<img class="stat-ov-img" src="assets/heroes/s4-piers.jpg" alt="Piers Nivans">' +
-        '<span class="stat-ov-name">ALL S4</span><span class="season-badge s4">S4</span>' +
-        '<div style="flex:1;margin:0 10px"><div class="stat-bar"><div class="stat-bar-fill" style="width:83%"></div></div></div>' +
-        '<span style="font-family:Share Tech Mono,monospace;color:var(--pale-gold);font-size:12px;flex-shrink:0">370%</span>' +
-        '</div>' +
-        '<div class="stat-overview-row">' +
-        '<img class="stat-ov-img" src="assets/heroes/s5-excella.jpg" alt="Excella Gionne">' +
-        '<span class="stat-ov-name">ALL S5</span><span class="season-badge s5">S5</span>' +
-        '<div style="flex:1;margin:0 10px"><div class="stat-bar"><div class="stat-bar-fill" style="width:100%"></div></div></div>' +
-        '<span style="font-family:Share Tech Mono,monospace;color:var(--pale-gold);font-size:12px;flex-shrink:0">444%</span>' +
-        '</div>';
-      s3.insertAdjacentHTML('afterend', rowsHtml);
-    }
-  }
-
-  var footer = document.querySelector('footer');
-  if(footer){
-    footer.innerHTML = footer.innerHTML.replace('COMMUNITY FULL GUIDE · S1 / S2 / S3','COMMUNITY FULL GUIDE · S1 / S2 / S3 / S4 / S5');
-  }
-})();
-<\/script>`;
-    html = html.replace('</body>', patch + '</body>');
+    var response=await fetch('legacy.html?v=20260823',{cache:'no-store'});
+    if(!response.ok)throw new Error('Base guide could not be loaded');
+    var html=await response.text();
+    var injected='<script src="patch.js?v=20260823-0900"><\/script>';
+    html=html.replace('</body>',injected+'</body>');
     document.open();
     document.write(html);
     document.close();
   }catch(err){
-    document.body.innerHTML = '<div class="loading"><strong>☣ GUIDE LOAD ERROR ☣</strong><small>' + String(err.message || err) + '</small></div>';
+    document.body.innerHTML='<div class="loading"><strong>☣ GUIDE LOAD ERROR ☣</strong><small>'+String(err.message||err)+'</small></div>';
   }
 })();
 </script>
