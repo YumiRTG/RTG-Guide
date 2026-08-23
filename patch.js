@@ -93,12 +93,11 @@
     }
   }
 
-  var ashleyImg='https://i.ibb.co/TBtDtM1w/Screenshot-20260329-085345-Resident-Evil-Survival-Unit.jpg';
   var arenaHeroes=[
     {name:'JAKE MULLER',pos:'FRONT LEFT',img:'assets/heroes/s4-jake.jpg',season:'S4',cls:'s4',stat:'370%',role:'Frontline'},
     {name:'SHEVA ALOMAR',pos:'FRONT RIGHT',img:'assets/heroes/s5-sheva.jpg',season:'S5',cls:'s5',stat:'444%',role:'Frontline'},
     {name:'PIERS NIVANS',pos:'BACK LEFT',img:'assets/heroes/s4-piers.jpg',season:'S4',cls:'s4',stat:'370%',role:'Backline'},
-    {name:'ASHLEY GRAHAM',pos:'BACK CENTER',img:ashleyImg,season:'S3',cls:'s3',stat:'290%',role:'Support'},
+    {name:'BSAA CHRIS',pos:'BACK CENTER',img:'assets/heroes/s5-chris.jpg',season:'S5',cls:'s5',stat:'444%',role:'Backline'},
     {name:'EXCELLA GIONNE',pos:'BACK RIGHT',img:'assets/heroes/s5-excella.jpg',season:'S5',cls:'s5',stat:'444%',role:'Backline'}
   ];
 
@@ -111,13 +110,13 @@
       '<div style="font-family:Share Tech Mono,monospace;font-size:10px;letter-spacing:2px;color:var(--crimson);text-align:center;margin-bottom:8px">— FRONT ROW —</div>'+
       '<div class="formation-bar"><div class="formation-pos">JAKE<span class="fp-sub">FRONT LEFT</span></div><div class="formation-pos">SHEVA<span class="fp-sub">FRONT RIGHT</span></div></div>'+
       '<div style="font-family:Share Tech Mono,monospace;font-size:10px;letter-spacing:2px;color:var(--gold);text-align:center;margin:12px 0 8px">— BACK ROW —</div>'+
-      '<div class="formation-bar"><div class="formation-pos">PIERS<span class="fp-sub">BACK LEFT</span></div><div class="formation-pos">ASHLEY<span class="fp-sub">BACK CENTER</span></div><div class="formation-pos">EXCELLA<span class="fp-sub">BACK RIGHT</span></div></div>'+
+      '<div class="formation-bar"><div class="formation-pos">PIERS<span class="fp-sub">BACK LEFT</span></div><div class="formation-pos">BSAA CHRIS<span class="fp-sub">BACK CENTER</span></div><div class="formation-pos">EXCELLA<span class="fp-sub">BACK RIGHT</span></div></div>'+
       '<div style="font-family:Share Tech Mono,monospace;font-size:10px;letter-spacing:3px;color:var(--dim);text-align:center;margin-top:16px">▼ YOUR BASE</div></div>';
   }
   function arenaPage(title,subtitle){
     var cards='';for(var i=0;i<arenaHeroes.length;i++)cards+=arenaSlot(arenaHeroes[i]);
     return '<div class="page-inner"><div class="section-title">'+title+'</div><div class="section-sub">'+subtitle+'</div>'+
-      '<div class="callout gold"><strong>Current best Arena setup:</strong> F2P and P2W use the same five heroes. Front: <strong>Jake + Sheva</strong>. Back: <strong>Piers + Ashley + Excella</strong>.</div>'+
+      '<div class="callout gold"><strong>Current best Arena setup:</strong> Front: <strong>Jake + Sheva</strong>. Back: <strong>Piers + BSAA Chris + Excella</strong>.</div>'+
       '<h3 class="sub-header">FORMATION</h3>'+arenaFormation()+'<div class="team-grid">'+cards+'</div></div>';
   }
 
@@ -126,7 +125,7 @@
   var p2w=document.getElementById('arena-p2w');
   if(p2w)p2w.innerHTML=arenaPage('S5 P2W BEST SETUP','// SAME BEST ARENA TEAM AS F2P //');
   var lineup=document.getElementById('arena-lineup');
-  if(lineup)lineup.innerHTML='<div class="page-inner"><div class="section-title">LINEUP — BEST ARENA FORMATION</div><div class="section-sub">// F2P = P2W · 2 FRONT · 3 BACK //</div><div class="callout blue"><strong>Best formation:</strong> Jake + Sheva in front. Piers + Ashley + Excella in back. There is currently no separate F2P/P2W lineup.</div>'+arenaFormation()+'</div>';
+  if(lineup)lineup.innerHTML='<div class="page-inner"><div class="section-title">LINEUP — BEST ARENA FORMATION</div><div class="section-sub">// F2P = P2W · 2 FRONT · 3 BACK //</div><div class="callout blue"><strong>Best formation:</strong> Jake + Sheva in front. Piers + BSAA Chris + Excella in back. There is currently no separate F2P/P2W lineup.</div>'+arenaFormation()+'</div>';
 
   var footer=document.querySelector('footer');
   if(footer)footer.innerHTML=footer.innerHTML.replace('COMMUNITY FULL GUIDE · S1 / S2 / S3','COMMUNITY FULL GUIDE · S1 / S2 / S3 / S4 / S5');
