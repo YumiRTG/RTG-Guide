@@ -82,8 +82,8 @@ html,body{margin:0;min-height:100%;background:#0a0a0a;color:#d4d4d4;font-family:
 
     var s = tierRow('S');
     if(s){
-      var sCards = card('assets/heroes/s5-sheva.jpg','SHEVA ALOMAR','S5','s5',444,'S-tier Season 5 hero.') +
-        card('assets/heroes/s5-chris.jpg','BSAA CHRIS','S5','s5',444,'S-tier Season 5 hero.') +
+      var sCards = card('assets/heroes/s5-sheva.jpg','SHEVA ALOMAR','S5','s5',444,'SS-tier Season 5 hero.') +
+        card('assets/heroes/s5-chris.jpg','BSAA CHRIS','S5','s5',444,'SS-tier Season 5 hero.') +
         card('assets/heroes/s4-jake.jpg','JAKE MULLER','S4','s4',370,'S-tier Season 4 hero.');
       s.querySelector('.tier-cards').insertAdjacentHTML('afterbegin', sCards);
     }
@@ -95,6 +95,8 @@ html,body{margin:0;min-height:100%;background:#0a0a0a;color:#d4d4d4;font-family:
       a.querySelector('.tier-cards').insertAdjacentHTML('afterbegin', aCards);
     }
 
+    moveHero('SHEVA ALOMAR','SS');
+    moveHero('BSAA CHRIS','SS');
     moveHero('CARLOS','A');
     moveHero('BILLY','B');
   }
